@@ -30,11 +30,11 @@ namespace MissionPlanner
         public static double fromSpeedDisplayUnit(double input) { return input / multiplierspeed; }
 
         // orientation - rads
-        [DisplayText("Roll (deg)")]
+        [DisplayText("Roll (degree)")]
         public float roll { get; set; }
-        [DisplayText("Pitch (deg)")]
+        [DisplayText("Pitch (degree)")]
         public float pitch { get; set; }
-        [DisplayText("Yaw (deg)")]
+        [DisplayText("Yaw (degree)")]
         public float yaw { get { return _yaw; } set { if (value < 0) { _yaw = value + 360; } else { _yaw = value; } } }
         private float _yaw = 0;
 
