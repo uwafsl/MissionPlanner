@@ -72,8 +72,10 @@
             this.Up = new System.Windows.Forms.DataGridViewImageColumn();
             this.Down = new System.Windows.Forms.DataGridViewImageColumn();
             this.Grad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Angle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHK_verifyheight = new System.Windows.Forms.CheckBox();
             this.TXT_WPRad = new System.Windows.Forms.TextBox();
             this.TXT_DefaultAlt = new System.Windows.Forms.TextBox();
@@ -113,6 +115,7 @@
             this.comboBoxMapType = new System.Windows.Forms.ComboBox();
             this.lnk_kml = new System.Windows.Forms.LinkLabel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lbl_wpfile = new System.Windows.Forms.Label();
             this.BUT_loadwpfile = new MissionPlanner.Controls.MyButton();
             this.BUT_saveWPFile = new MissionPlanner.Controls.MyButton();
             this.panelMap = new System.Windows.Forms.Panel();
@@ -143,6 +146,7 @@
             this.savePolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadPolygonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromSHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.areaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rallyPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setRallyPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getRallyPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,8 +164,8 @@
             this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoWPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createWpCircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.areaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createSplineCircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMeasure = new System.Windows.Forms.ToolStripMenuItem();
             this.rotateMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -182,16 +186,16 @@
             this.poideleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.poieditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackerHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flyToHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifyAltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enterUTMCoordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.switchDockingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setHomeHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new MissionPlanner.Controls.MyTrackBar();
             this.label11 = new System.Windows.Forms.Label();
             this.panelBASE = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lbl_wpfile = new System.Windows.Forms.Label();
+            this.areaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Commands)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -232,8 +236,10 @@
             this.Up,
             this.Down,
             this.Grad,
+            this.Angle,
             this.Dist,
-            this.AZ});
+            this.AZ,
+            this.Tag});
             this.Commands.Name = "Commands";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
@@ -348,6 +354,14 @@
             this.Grad.ReadOnly = true;
             this.Grad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // Angle
+            // 
+            this.Angle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            resources.ApplyResources(this.Angle, "Angle");
+            this.Angle.Name = "Angle";
+            this.Angle.ReadOnly = true;
+            this.Angle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // Dist
             // 
             this.Dist.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
@@ -363,6 +377,12 @@
             this.AZ.Name = "AZ";
             this.AZ.ReadOnly = true;
             this.AZ.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Tag
+            // 
+            resources.ApplyResources(this.Tag, "Tag");
+            this.Tag.Name = "Tag";
+            this.Tag.ReadOnly = true;
             // 
             // CHK_verifyheight
             // 
@@ -506,6 +526,7 @@
             // coords1
             // 
             this.coords1.Alt = 0D;
+            this.coords1.AltUnit = "m";
             this.coords1.Lat = 0D;
             this.coords1.Lng = 0D;
             resources.ApplyResources(this.coords1, "coords1");
@@ -558,6 +579,7 @@
             this.panelWaypoints.ToolTipTextCloseIcon = null;
             this.panelWaypoints.ToolTipTextExpandIconPanelCollapsed = null;
             this.panelWaypoints.ToolTipTextExpandIconPanelExpanded = null;
+            this.panelWaypoints.ExpandClick += new System.EventHandler<System.EventArgs>(this.panelWaypoints_ExpandClick);
             // 
             // splitter1
             // 
@@ -690,6 +712,11 @@
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
+            // lbl_wpfile
+            // 
+            resources.ApplyResources(this.lbl_wpfile, "lbl_wpfile");
+            this.lbl_wpfile.Name = "lbl_wpfile";
+            // 
             // BUT_loadwpfile
             // 
             resources.ApplyResources(this.BUT_loadwpfile, "BUT_loadwpfile");
@@ -781,10 +808,10 @@
             this.fileLoadSaveToolStripMenuItem,
             this.pOIToolStripMenuItem,
             this.trackerHomeToolStripMenuItem,
-            this.flyToHereToolStripMenuItem,
             this.modifyAltToolStripMenuItem,
             this.enterUTMCoordToolStripMenuItem,
-            this.switchDockingToolStripMenuItem});
+            this.switchDockingToolStripMenuItem,
+            this.setHomeHereToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
@@ -897,7 +924,8 @@
             this.clearPolygonToolStripMenuItem,
             this.savePolygonToolStripMenuItem,
             this.loadPolygonToolStripMenuItem,
-            this.fromSHPToolStripMenuItem});
+            this.fromSHPToolStripMenuItem,
+            this.areaToolStripMenuItem});
             this.polygonToolStripMenuItem.Name = "polygonToolStripMenuItem";
             resources.ApplyResources(this.polygonToolStripMenuItem, "polygonToolStripMenuItem");
             // 
@@ -930,6 +958,12 @@
             this.fromSHPToolStripMenuItem.Name = "fromSHPToolStripMenuItem";
             resources.ApplyResources(this.fromSHPToolStripMenuItem, "fromSHPToolStripMenuItem");
             this.fromSHPToolStripMenuItem.Click += new System.EventHandler(this.fromSHPToolStripMenuItem_Click);
+            // 
+            // areaToolStripMenuItem
+            // 
+            this.areaToolStripMenuItem.Name = "areaToolStripMenuItem";
+            resources.ApplyResources(this.areaToolStripMenuItem, "areaToolStripMenuItem");
+            this.areaToolStripMenuItem.Click += new System.EventHandler(this.areaToolStripMenuItem_Click);
             // 
             // rallyPointsToolStripMenuItem
             // 
@@ -1036,8 +1070,9 @@
             // 
             this.autoWPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createWpCircleToolStripMenuItem,
-            this.areaToolStripMenuItem,
-            this.createSplineCircleToolStripMenuItem});
+            this.createSplineCircleToolStripMenuItem,
+            this.areaToolStripMenuItem1,
+            this.textToolStripMenuItem});
             this.autoWPToolStripMenuItem.Name = "autoWPToolStripMenuItem";
             resources.ApplyResources(this.autoWPToolStripMenuItem, "autoWPToolStripMenuItem");
             // 
@@ -1047,17 +1082,17 @@
             resources.ApplyResources(this.createWpCircleToolStripMenuItem, "createWpCircleToolStripMenuItem");
             this.createWpCircleToolStripMenuItem.Click += new System.EventHandler(this.createWpCircleToolStripMenuItem_Click);
             // 
-            // areaToolStripMenuItem
-            // 
-            this.areaToolStripMenuItem.Name = "areaToolStripMenuItem";
-            resources.ApplyResources(this.areaToolStripMenuItem, "areaToolStripMenuItem");
-            this.areaToolStripMenuItem.Click += new System.EventHandler(this.areaToolStripMenuItem_Click);
-            // 
             // createSplineCircleToolStripMenuItem
             // 
             this.createSplineCircleToolStripMenuItem.Name = "createSplineCircleToolStripMenuItem";
             resources.ApplyResources(this.createSplineCircleToolStripMenuItem, "createSplineCircleToolStripMenuItem");
             this.createSplineCircleToolStripMenuItem.Click += new System.EventHandler(this.createSplineCircleToolStripMenuItem_Click);
+            // 
+            // textToolStripMenuItem
+            // 
+            this.textToolStripMenuItem.Name = "textToolStripMenuItem";
+            resources.ApplyResources(this.textToolStripMenuItem, "textToolStripMenuItem");
+            this.textToolStripMenuItem.Click += new System.EventHandler(this.textToolStripMenuItem_Click);
             // 
             // mapToolToolStripMenuItem
             // 
@@ -1195,11 +1230,6 @@
             resources.ApplyResources(this.trackerHomeToolStripMenuItem, "trackerHomeToolStripMenuItem");
             this.trackerHomeToolStripMenuItem.Click += new System.EventHandler(this.trackerHomeToolStripMenuItem_Click);
             // 
-            // flyToHereToolStripMenuItem
-            // 
-            this.flyToHereToolStripMenuItem.Name = "flyToHereToolStripMenuItem";
-            resources.ApplyResources(this.flyToHereToolStripMenuItem, "flyToHereToolStripMenuItem");
-            // 
             // modifyAltToolStripMenuItem
             // 
             this.modifyAltToolStripMenuItem.Name = "modifyAltToolStripMenuItem";
@@ -1217,6 +1247,12 @@
             this.switchDockingToolStripMenuItem.Name = "switchDockingToolStripMenuItem";
             resources.ApplyResources(this.switchDockingToolStripMenuItem, "switchDockingToolStripMenuItem");
             this.switchDockingToolStripMenuItem.Click += new System.EventHandler(this.switchDockingToolStripMenuItem_Click);
+            // 
+            // setHomeHereToolStripMenuItem
+            // 
+            this.setHomeHereToolStripMenuItem.Name = "setHomeHereToolStripMenuItem";
+            resources.ApplyResources(this.setHomeHereToolStripMenuItem, "setHomeHereToolStripMenuItem");
+            this.setHomeHereToolStripMenuItem.Click += new System.EventHandler(this.setHomeHereToolStripMenuItem_Click);
             // 
             // trackBar1
             // 
@@ -1252,10 +1288,11 @@
             this.timer1.Interval = 1200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // lbl_wpfile
+            // areaToolStripMenuItem1
             // 
-            resources.ApplyResources(this.lbl_wpfile, "lbl_wpfile");
-            this.lbl_wpfile.Name = "lbl_wpfile";
+            this.areaToolStripMenuItem1.Name = "areaToolStripMenuItem1";
+            resources.ApplyResources(this.areaToolStripMenuItem1, "areaToolStripMenuItem1");
+            this.areaToolStripMenuItem1.Click += new System.EventHandler(this.areaToolStripMenuItem_Click);
             // 
             // FlightPlanner
             // 
@@ -1265,7 +1302,7 @@
             resources.ApplyResources(this, "$this");
             this.Name = "FlightPlanner";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FlightPlanner_FormClosing);
-            this.Load += new System.EventHandler(this.Planner_Load);
+            this.Load += new System.EventHandler(this.FlightPlanner_Load);
             this.Resize += new System.EventHandler(this.Planner_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.Commands)).EndInit();
             this.panel5.ResumeLayout(false);
@@ -1308,18 +1345,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbl_status;
         private System.Windows.Forms.DataGridView Commands;
-        private System.Windows.Forms.CheckBox CHK_verifyheight;
         private Controls.MyButton BUT_Add;
-        private System.Windows.Forms.TextBox TXT_WPRad;
-        private System.Windows.Forms.TextBox TXT_DefaultAlt;
         private System.Windows.Forms.Label LBL_WPRad;
         private System.Windows.Forms.Label LBL_defalutalt;
-        private System.Windows.Forms.TextBox TXT_loiterrad;
         private System.Windows.Forms.Label label5;
         private BSE.Windows.Forms.Panel panelWaypoints;
         private BSE.Windows.Forms.Panel panelAction;
         private System.Windows.Forms.Panel panelMap;
-        private Controls.myGMAP MainMap;
+        public Controls.myGMAP MainMap;
         private Controls.MyTrackBar trackBar1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lbl_distance;
@@ -1368,12 +1401,10 @@
         private System.Windows.Forms.ToolStripMenuItem loadWPFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveWPFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trackerHomeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem flyToHereToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reverseWPsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadAndAppendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem savePolygonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadPolygonToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem areaToolStripMenuItem;
         public System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.CheckBox chk_grid;
         private System.Windows.Forms.ToolStripMenuItem insertWpToolStripMenuItem;
@@ -1406,10 +1437,9 @@
         private System.Windows.Forms.ToolStripMenuItem switchDockingToolStripMenuItem;
         private BSE.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.ToolStripMenuItem insertSplineWPToolStripMenuItem;
-        private System.Windows.Forms.CheckBox CHK_splinedefault;
         private System.Windows.Forms.ToolStripMenuItem createSplineCircleToolStripMenuItem;
-        private System.Windows.Forms.ComboBox CMB_altmode;
         private System.Windows.Forms.ToolStripMenuItem fromSHPToolStripMenuItem;
+        private System.Windows.Forms.Label lbl_wpfile;
         private System.Windows.Forms.DataGridViewComboBoxColumn Command;
         private System.Windows.Forms.DataGridViewTextBoxColumn Param1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Param2;
@@ -1422,8 +1452,19 @@
         private System.Windows.Forms.DataGridViewImageColumn Up;
         private System.Windows.Forms.DataGridViewImageColumn Down;
         private System.Windows.Forms.DataGridViewTextBoxColumn Grad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Angle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dist;
         private System.Windows.Forms.DataGridViewTextBoxColumn AZ;
-        private System.Windows.Forms.Label lbl_wpfile;
+        private System.Windows.Forms.ToolStripMenuItem textToolStripMenuItem;
+        public System.Windows.Forms.CheckBox CHK_verifyheight;
+        public System.Windows.Forms.TextBox TXT_WPRad;
+        public System.Windows.Forms.TextBox TXT_DefaultAlt;
+        public System.Windows.Forms.TextBox TXT_loiterrad;
+        public System.Windows.Forms.CheckBox CHK_splinedefault;
+        public System.Windows.Forms.ComboBox CMB_altmode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tag;
+        private System.Windows.Forms.ToolStripMenuItem areaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setHomeHereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem areaToolStripMenuItem1;
     }
 }

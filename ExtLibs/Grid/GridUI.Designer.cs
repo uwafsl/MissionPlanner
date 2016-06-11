@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridUI));
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lbl_gndelev = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.lbl_turnrad = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.lbl_photoevery = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.lbl_flighttime = new System.Windows.Forms.Label();
@@ -52,6 +56,12 @@
             this.label22 = new System.Windows.Forms.Label();
             this.tabCamera = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.num_setservolow = new System.Windows.Forms.NumericUpDown();
+            this.num_setservohigh = new System.Windows.Forms.NumericUpDown();
+            this.rad_do_set_servo = new System.Windows.Forms.RadioButton();
+            this.chk_stopstart = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -83,6 +93,9 @@
             this.BUT_save = new MissionPlanner.Controls.MyButton();
             this.tabGrid = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.LBL_Alternating_lanes = new System.Windows.Forms.Label();
+            this.LBL_Lane_Dist = new System.Windows.Forms.Label();
+            this.NUM_Lane_Dist = new System.Windows.Forms.NumericUpDown();
             this.label28 = new System.Windows.Forms.Label();
             this.groupBox_copter = new System.Windows.Forms.GroupBox();
             this.TXT_headinghold = new System.Windows.Forms.TextBox();
@@ -93,8 +106,9 @@
             this.LBL_copter_delay = new System.Windows.Forms.Label();
             this.NUM_copter_delay = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.NUM_spacing = new System.Windows.Forms.NumericUpDown();
+            this.chk_crossgrid = new System.Windows.Forms.CheckBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.NUM_leadin = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.NUM_overshoot2 = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
@@ -107,8 +121,13 @@
             this.NUM_overshoot = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.NUM_Distance = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.NUM_spacing = new System.Windows.Forms.NumericUpDown();
             this.tabSimple = new System.Windows.Forms.TabPage();
+            this.label38 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.NUM_split = new System.Windows.Forms.NumericUpDown();
             this.CHK_usespeed = new System.Windows.Forms.CheckBox();
             this.CHK_toandland_RTL = new System.Windows.Forms.CheckBox();
             this.CHK_toandland = new System.Windows.Forms.CheckBox();
@@ -130,14 +149,15 @@
             this.CHK_boundary = new System.Windows.Forms.CheckBox();
             this.BUT_Accept = new MissionPlanner.Controls.MyButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.map = new MissionPlanner.Controls.myGMAP();
             this.TRK_zoom = new MissionPlanner.Controls.MyTrackBar();
-            this.NUM_Lane_Dist = new System.Windows.Forms.NumericUpDown();
-            this.LBL_Lane_Dist = new System.Windows.Forms.Label();
-            this.LBL_Alternating_lanes = new System.Windows.Forms.Label();
+            this.map = new MissionPlanner.Controls.myGMAP();
+            this.label42 = new System.Windows.Forms.Label();
+            this.num_setservono = new System.Windows.Forms.NumericUpDown();
             this.groupBox5.SuspendLayout();
             this.tabCamera.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_setservolow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_setservohigh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_repttime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_reptpwm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_reptservo)).BeginInit();
@@ -145,28 +165,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUM_focallength)).BeginInit();
             this.tabGrid.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUM_Lane_Dist)).BeginInit();
             this.groupBox_copter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_copter_delay)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUM_spacing)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUM_leadin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_overshoot2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_overlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_sidelap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_overshoot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_Distance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUM_spacing)).BeginInit();
             this.tabSimple.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUM_split)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_UpDownFlySpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_angle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_altitude)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TRK_zoom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUM_Lane_Dist)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_setservono)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.lbl_gndelev);
+            this.groupBox5.Controls.Add(this.label40);
+            this.groupBox5.Controls.Add(this.lbl_turnrad);
+            this.groupBox5.Controls.Add(this.label36);
             this.groupBox5.Controls.Add(this.lbl_photoevery);
             this.groupBox5.Controls.Add(this.label35);
             this.groupBox5.Controls.Add(this.lbl_flighttime);
@@ -190,6 +217,26 @@
             resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
+            // 
+            // lbl_gndelev
+            // 
+            resources.ApplyResources(this.lbl_gndelev, "lbl_gndelev");
+            this.lbl_gndelev.Name = "lbl_gndelev";
+            // 
+            // label40
+            // 
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.Name = "label40";
+            // 
+            // lbl_turnrad
+            // 
+            resources.ApplyResources(this.lbl_turnrad, "lbl_turnrad");
+            this.lbl_turnrad.Name = "lbl_turnrad";
+            // 
+            // label36
+            // 
+            resources.ApplyResources(this.label36, "label36");
+            this.label36.Name = "label36";
             // 
             // lbl_photoevery
             // 
@@ -301,6 +348,14 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label42);
+            this.groupBox3.Controls.Add(this.num_setservono);
+            this.groupBox3.Controls.Add(this.label41);
+            this.groupBox3.Controls.Add(this.label39);
+            this.groupBox3.Controls.Add(this.num_setservolow);
+            this.groupBox3.Controls.Add(this.num_setservohigh);
+            this.groupBox3.Controls.Add(this.rad_do_set_servo);
+            this.groupBox3.Controls.Add(this.chk_stopstart);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.label16);
@@ -313,6 +368,61 @@
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.Name = "label41";
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // num_setservolow
+            // 
+            resources.ApplyResources(this.num_setservolow, "num_setservolow");
+            this.num_setservolow.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.num_setservolow.Name = "num_setservolow";
+            this.num_setservolow.Value = new decimal(new int[] {
+            1100,
+            0,
+            0,
+            0});
+            // 
+            // num_setservohigh
+            // 
+            resources.ApplyResources(this.num_setservohigh, "num_setservohigh");
+            this.num_setservohigh.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.num_setservohigh.Name = "num_setservohigh";
+            this.num_setservohigh.Value = new decimal(new int[] {
+            1900,
+            0,
+            0,
+            0});
+            // 
+            // rad_do_set_servo
+            // 
+            resources.ApplyResources(this.rad_do_set_servo, "rad_do_set_servo");
+            this.rad_do_set_servo.Name = "rad_do_set_servo";
+            this.rad_do_set_servo.Tag = "";
+            this.rad_do_set_servo.UseVisualStyleBackColor = true;
+            // 
+            // chk_stopstart
+            // 
+            resources.ApplyResources(this.chk_stopstart, "chk_stopstart");
+            this.chk_stopstart.Checked = true;
+            this.chk_stopstart.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_stopstart.Name = "chk_stopstart";
+            this.chk_stopstart.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
@@ -562,6 +672,8 @@
             this.tabGrid.Controls.Add(this.groupBox7);
             this.tabGrid.Controls.Add(this.groupBox_copter);
             this.tabGrid.Controls.Add(this.groupBox1);
+            this.tabGrid.Controls.Add(this.label3);
+            this.tabGrid.Controls.Add(this.NUM_spacing);
             resources.ApplyResources(this.tabGrid, "tabGrid");
             this.tabGrid.Name = "tabGrid";
             this.tabGrid.UseVisualStyleBackColor = true;
@@ -575,6 +687,27 @@
             this.groupBox7.Controls.Add(this.label28);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
+            // 
+            // LBL_Alternating_lanes
+            // 
+            resources.ApplyResources(this.LBL_Alternating_lanes, "LBL_Alternating_lanes");
+            this.LBL_Alternating_lanes.Name = "LBL_Alternating_lanes";
+            // 
+            // LBL_Lane_Dist
+            // 
+            resources.ApplyResources(this.LBL_Lane_Dist, "LBL_Lane_Dist");
+            this.LBL_Lane_Dist.Name = "LBL_Lane_Dist";
+            // 
+            // NUM_Lane_Dist
+            // 
+            resources.ApplyResources(this.NUM_Lane_Dist, "NUM_Lane_Dist");
+            this.NUM_Lane_Dist.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.NUM_Lane_Dist.Name = "NUM_Lane_Dist";
+            this.NUM_Lane_Dist.ValueChanged += new System.EventHandler(this.NUM_Lane_Dist_ValueChanged);
             // 
             // label28
             // 
@@ -652,8 +785,9 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.NUM_spacing);
+            this.groupBox1.Controls.Add(this.chk_crossgrid);
+            this.groupBox1.Controls.Add(this.label32);
+            this.groupBox1.Controls.Add(this.NUM_leadin);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.NUM_overshoot2);
             this.groupBox1.Controls.Add(this.label8);
@@ -669,21 +803,28 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // label3
+            // chk_crossgrid
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.chk_crossgrid, "chk_crossgrid");
+            this.chk_crossgrid.Name = "chk_crossgrid";
+            this.chk_crossgrid.UseVisualStyleBackColor = true;
+            this.chk_crossgrid.Click += new System.EventHandler(this.domainUpDown1_ValueChanged);
             // 
-            // NUM_spacing
+            // label32
             // 
-            resources.ApplyResources(this.NUM_spacing, "NUM_spacing");
-            this.NUM_spacing.Maximum = new decimal(new int[] {
-            5000,
+            resources.ApplyResources(this.label32, "label32");
+            this.label32.Name = "label32";
+            // 
+            // NUM_leadin
+            // 
+            resources.ApplyResources(this.NUM_leadin, "NUM_leadin");
+            this.NUM_leadin.Maximum = new decimal(new int[] {
+            9999,
             0,
             0,
             0});
-            this.NUM_spacing.Name = "NUM_spacing";
-            this.NUM_spacing.ValueChanged += new System.EventHandler(this.domainUpDown1_ValueChanged);
+            this.NUM_leadin.Name = "NUM_leadin";
+            this.NUM_leadin.ValueChanged += new System.EventHandler(this.domainUpDown1_ValueChanged);
             // 
             // label7
             // 
@@ -733,7 +874,7 @@
             0,
             0,
             0});
-            this.num_overlap.ValueChanged += new System.EventHandler(this.NUM_ValueChanged);
+            this.num_overlap.ValueChanged += new System.EventHandler(this.domainUpDown1_ValueChanged);
             // 
             // num_sidelap
             // 
@@ -745,7 +886,7 @@
             0,
             0,
             0});
-            this.num_sidelap.ValueChanged += new System.EventHandler(this.NUM_ValueChanged);
+            this.num_sidelap.ValueChanged += new System.EventHandler(this.domainUpDown1_ValueChanged);
             // 
             // label5
             // 
@@ -770,6 +911,7 @@
             // 
             // NUM_Distance
             // 
+            this.NUM_Distance.DecimalPlaces = 2;
             resources.ApplyResources(this.NUM_Distance, "NUM_Distance");
             this.NUM_Distance.Maximum = new decimal(new int[] {
             9999,
@@ -777,10 +919,10 @@
             0,
             0});
             this.NUM_Distance.Minimum = new decimal(new int[] {
-            1,
+            3,
             0,
             0,
-            0});
+            65536});
             this.NUM_Distance.Name = "NUM_Distance";
             this.NUM_Distance.Value = new decimal(new int[] {
             50,
@@ -789,8 +931,25 @@
             0});
             this.NUM_Distance.ValueChanged += new System.EventHandler(this.domainUpDown1_ValueChanged);
             // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // NUM_spacing
+            // 
+            resources.ApplyResources(this.NUM_spacing, "NUM_spacing");
+            this.NUM_spacing.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.NUM_spacing.Name = "NUM_spacing";
+            this.NUM_spacing.ValueChanged += new System.EventHandler(this.domainUpDown1_ValueChanged);
+            // 
             // tabSimple
             // 
+            this.tabSimple.Controls.Add(this.label38);
             this.tabSimple.Controls.Add(this.groupBox6);
             this.tabSimple.Controls.Add(this.groupBox4);
             this.tabSimple.Controls.Add(this.BUT_Accept);
@@ -798,8 +957,15 @@
             this.tabSimple.Name = "tabSimple";
             this.tabSimple.UseVisualStyleBackColor = true;
             // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
+            // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.label37);
+            this.groupBox6.Controls.Add(this.NUM_split);
             this.groupBox6.Controls.Add(this.CHK_usespeed);
             this.groupBox6.Controls.Add(this.CHK_toandland_RTL);
             this.groupBox6.Controls.Add(this.CHK_toandland);
@@ -815,6 +981,32 @@
             resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // NUM_split
+            // 
+            resources.ApplyResources(this.NUM_split, "NUM_split");
+            this.NUM_split.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.NUM_split.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUM_split.Name = "NUM_split";
+            this.NUM_split.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUM_split.ValueChanged += new System.EventHandler(this.domainUpDown1_ValueChanged);
             // 
             // CHK_usespeed
             // 
@@ -910,7 +1102,7 @@
             0,
             0});
             this.NUM_altitude.Minimum = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             0});
@@ -1003,6 +1195,19 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
+            // TRK_zoom
+            // 
+            resources.ApplyResources(this.TRK_zoom, "TRK_zoom");
+            this.TRK_zoom.LargeChange = 0.005F;
+            this.TRK_zoom.Maximum = 19F;
+            this.TRK_zoom.Minimum = 2F;
+            this.TRK_zoom.Name = "TRK_zoom";
+            this.TRK_zoom.SmallChange = 0.001F;
+            this.TRK_zoom.TickFrequency = 1F;
+            this.TRK_zoom.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.TRK_zoom.Value = 2F;
+            this.TRK_zoom.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
             // map
             // 
             resources.ApplyResources(this.map, "map");
@@ -1028,39 +1233,30 @@
             this.map.MouseDown += new System.Windows.Forms.MouseEventHandler(this.map_MouseDown);
             this.map.MouseMove += new System.Windows.Forms.MouseEventHandler(this.map_MouseMove);
             // 
-            // TRK_zoom
+            // label42
             // 
-            resources.ApplyResources(this.TRK_zoom, "TRK_zoom");
-            this.TRK_zoom.LargeChange = 0.005F;
-            this.TRK_zoom.Maximum = 19F;
-            this.TRK_zoom.Minimum = 2F;
-            this.TRK_zoom.Name = "TRK_zoom";
-            this.TRK_zoom.SmallChange = 0.001F;
-            this.TRK_zoom.TickFrequency = 1F;
-            this.TRK_zoom.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.TRK_zoom.Value = 2F;
-            this.TRK_zoom.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            resources.ApplyResources(this.label42, "label42");
+            this.label42.Name = "label42";
             // 
-            // NUM_Lane_Dist
+            // num_setservono
             // 
-            resources.ApplyResources(this.NUM_Lane_Dist, "NUM_Lane_Dist");
-            this.NUM_Lane_Dist.Maximum = new decimal(new int[] {
-            9999,
+            resources.ApplyResources(this.num_setservono, "num_setservono");
+            this.num_setservono.Maximum = new decimal(new int[] {
+            12,
             0,
             0,
             0});
-            this.NUM_Lane_Dist.Name = "NUM_Lane_Dist";
-            this.NUM_Lane_Dist.ValueChanged += new System.EventHandler(this.NUM_Lane_Dist_ValueChanged);
-            // 
-            // LBL_Lane_Dist
-            // 
-            resources.ApplyResources(this.LBL_Lane_Dist, "LBL_Lane_Dist");
-            this.LBL_Lane_Dist.Name = "LBL_Lane_Dist";
-            // 
-            // LBL_Alternating_lanes
-            // 
-            resources.ApplyResources(this.LBL_Alternating_lanes, "LBL_Alternating_lanes");
-            this.LBL_Alternating_lanes.Name = "LBL_Alternating_lanes";
+            this.num_setservono.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.num_setservono.Name = "num_setservono";
+            this.num_setservono.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // GridUI
             // 
@@ -1078,6 +1274,8 @@
             this.tabCamera.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_setservolow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_setservohigh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_repttime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_reptpwm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_reptservo)).EndInit();
@@ -1085,22 +1283,27 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_focallength)).EndInit();
             this.tabGrid.ResumeLayout(false);
+            this.tabGrid.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUM_Lane_Dist)).EndInit();
             this.groupBox_copter.ResumeLayout(false);
             this.groupBox_copter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_copter_delay)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUM_spacing)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUM_leadin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_overshoot2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_overlap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_sidelap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_overshoot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_Distance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUM_spacing)).EndInit();
             this.tabSimple.ResumeLayout(false);
+            this.tabSimple.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUM_split)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_UpDownFlySpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_angle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_altitude)).EndInit();
@@ -1108,7 +1311,7 @@
             this.groupBox4.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TRK_zoom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUM_Lane_Dist)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_setservono)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1222,5 +1425,23 @@
         private System.Windows.Forms.Label LBL_Lane_Dist;
         private System.Windows.Forms.NumericUpDown NUM_Lane_Dist;
         private System.Windows.Forms.Label LBL_Alternating_lanes;
+        private System.Windows.Forms.Label lbl_turnrad;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.NumericUpDown NUM_leadin;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.NumericUpDown NUM_split;
+        private System.Windows.Forms.CheckBox chk_stopstart;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label lbl_gndelev;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.CheckBox chk_crossgrid;
+        private System.Windows.Forms.RadioButton rad_do_set_servo;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.NumericUpDown num_setservolow;
+        private System.Windows.Forms.NumericUpDown num_setservohigh;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.NumericUpDown num_setservono;
     }
 }

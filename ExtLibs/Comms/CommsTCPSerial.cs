@@ -21,10 +21,12 @@ namespace MissionPlanner.Comms
 
         int retrys = 3;
 
+        bool reconnectnoprompt = false;
+
         public int WriteBufferSize { get; set; }
         public int WriteTimeout { get; set; }
         public bool RtsEnable { get; set; }
-        public Stream BaseStream { get { return this.BaseStream; } }
+        public Stream BaseStream { get { return client.GetStream(); } }
 
         public TcpSerial()
         {
@@ -53,16 +55,35 @@ namespace MissionPlanner.Comms
         public  Parity Parity { get; set; }
         public  int DataBits { get; set; }
 
-        public string PortName { get; set; }
+        public string PortName
+        {
+            get { return "TCP" + Port; }
+            set { }
+        }
 
-        public  int BytesToRead
+        public int BytesToRead
         {
             get { /*Console.WriteLine(DateTime.Now.Millisecond + " tcp btr " + (client.Available + rbuffer.Length - rbufferread));*/ return (int)client.Available; }
         }
 
         public int BytesToWrite { get { return 0; } }
 
-        public bool IsOpen { get { try { return client.Client.Connected; } catch { return false; } } }
+        public bool IsOpen
+        {
+            get
+            {
+                try
+                {
+                    if (client == null) return false;
+                    if (client.Client == null) return false;
+                    return client.Client.Connected;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
 
         public bool DtrEnable
         {
@@ -87,7 +108,7 @@ namespace MissionPlanner.Comms
 
             host = OnSettings("TCP_host", host);
 
-            //if (!MainV2.MONO)
+            if (!reconnectnoprompt)
             {
                 if (System.Windows.Forms.DialogResult.Cancel == InputBox.Show("remote host", "Enter host name/ip (ensure remote end is already started)", ref host))
                 {
@@ -111,12 +132,14 @@ namespace MissionPlanner.Comms
 
             VerifyConnected();
 
+            reconnectnoprompt = true;
+
             return;
         }
 
         void VerifyConnected()
         {
-            if (client == null || !IsOpen)
+            if (!IsOpen)
             {
                 try
                 {

@@ -17,11 +17,11 @@ namespace MissionPlanner.Comms
 
         MAVLinkInterface mavint;
 
-        static KeyValuePair<MAVLink.MAVLINK_MSG_ID, Func<byte[], bool>> subscription;
+        static KeyValuePair<MAVLink.MAVLINK_MSG_ID, Func<MAVLink.MAVLinkMessage, bool>> subscription;
 
         uint baud = 0;
 
-        ushort timeout = 10;
+        public ushort timeout = 10;
 
         public MAVLink.SERIAL_CONTROL_DEV port = MAVLink.SERIAL_CONTROL_DEV.TELEM1;
 
@@ -36,11 +36,17 @@ namespace MissionPlanner.Comms
                 if (open)
                 {
                     log.Info("MAVLinkSerialPort baudrate " + value);
-                    mavint.SendSerialControl(port, timeout, null, (uint)value);
+                    mavint.SendSerialControl(port, timeout, null, (uint) value);
                 }
-                baud = (uint)value;
+                baud = (uint) value;
             }
-            get { return (int)baud; }
+            get { return (int) baud; }
+        }
+
+        public MAVLinkSerialPort(MAVLinkInterface mavint, int port)
+            : this(mavint, (MAVLink.SERIAL_CONTROL_DEV)port)
+        {
+
         }
 
         public MAVLinkSerialPort(MAVLinkInterface mavint, MAVLink.SERIAL_CONTROL_DEV port)
@@ -50,17 +56,17 @@ namespace MissionPlanner.Comms
 
             if (!mavint.BaseStream.IsOpen)
             {
-                mavint.BaseStream.Open();
+                throw new Exception(Strings.PleaseConnect);
             }
 
             if (mavint.getHeartBeat().Length == 0)
             {
-                throw new Exception("No valid heartbeats read from port");
+                throw new Exception(Strings.No_valid_heartbeats_read_from_port);
             }
 
             if (subscription.Value != null)
                 mavint.UnSubscribeToPacketType(subscription);
-            
+
             subscription = mavint.SubscribeToPacketType(MAVLink.MAVLINK_MSG_ID.SERIAL_CONTROL, ReceviedPacket, true);
 
             bgdata = new Thread(mainloop);
@@ -79,7 +85,9 @@ namespace MissionPlanner.Comms
                     System.Threading.Thread.Sleep(5);
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         ~MAVLinkSerialPort()
@@ -95,7 +103,7 @@ namespace MissionPlanner.Comms
         int packetcount = 0;
         int packetwithdata = 0;
 
-        bool ReceviedPacket(byte[] packet)
+        bool ReceviedPacket(MAVLink.MAVLinkMessage packet)
         {
             if (packetcounttimer.Second != DateTime.Now.Second)
             {
@@ -107,14 +115,15 @@ namespace MissionPlanner.Comms
 
             packetcount++;
 
-            MAVLink.mavlink_serial_control_t item = packet.ByteArrayToStructure<MAVLink.mavlink_serial_control_t>();
+            MAVLink.mavlink_serial_control_t item = packet.ToStructure<MAVLink.mavlink_serial_control_t>();
 
             if (item.count == 0)
                 return true;
 
             packetwithdata++;
 
-            Console.WriteLine(DateTime.Now.Millisecond + "data count " + item.count); // ASCIIEncoding.ASCII.GetString(item.data, 0, item.count)
+            Console.WriteLine(DateTime.Now.Millisecond + "data count " + item.count);
+                // ASCIIEncoding.ASCII.GetString(item.data, 0, item.count)
 
             lock (buffer)
             {
@@ -127,6 +136,7 @@ namespace MissionPlanner.Comms
 
             return true;
         }
+
         DateTime lastgetdata = DateTime.MinValue;
 
         void GetData(bool now = false)
@@ -142,13 +152,15 @@ namespace MissionPlanner.Comms
         {
             int count = 0;
 
+            DateTime deadline = DateTime.Now.AddMilliseconds(timeout);
+
             while (buffer.Size == 0)
             {
                 GetData();
                 System.Threading.Thread.Sleep(1);
-                if (count > ReadTimeout)
-                        throw new Exception("MAVLinkSerialPort Timeout on read");
-                count+= 1;
+                if (DateTime.Now > deadline)
+                    throw new Exception("MAVLinkSerialPort Timeout on read");
+                count += 1;
             }
             lock (buffer)
             {
@@ -174,8 +186,6 @@ namespace MissionPlanner.Comms
 
             log.Info("Close");
             mavint.SendSerialControl(port, 0, null, 0, true);
-
-
         }
 
         public void DiscardInBuffer()
@@ -221,12 +231,11 @@ namespace MissionPlanner.Comms
 
             char cha;
 
-            do  
+            do
             {
-                cha = (char)ReadByte();
+                cha = (char) ReadByte();
                 sb.Append(cha);
-            }
-            while (cha != '\n');
+            } while (cha != '\n');
 
             return sb.ToString();
         }
@@ -243,7 +252,6 @@ namespace MissionPlanner.Comms
 
         public void toggleDTR()
         {
-
         }
 
         public System.IO.Stream BaseStream
@@ -253,7 +261,8 @@ namespace MissionPlanner.Comms
 
         public int BytesToRead
         {
-            get {
+            get
+            {
                 GetData();
                 lock (buffer)
                 {
@@ -267,9 +276,9 @@ namespace MissionPlanner.Comms
             get { return mavint.BaseStream.BytesToWrite; }
         }
 
-        public int DataBits{ get; set; }
+        public int DataBits { get; set; }
 
-        public bool DtrEnable{ get; set; }
+        public bool DtrEnable { get; set; }
 
         bool open = false;
 
@@ -284,14 +293,8 @@ namespace MissionPlanner.Comms
 
         public int ReadBufferSize
         {
-            get
-            {
-                return buffer.Capacity;
-            }
-            set
-            {
-                buffer.Capacity = value;
-            }
+            get { return buffer.Capacity; }
+            set { buffer.Capacity = value; }
         }
 
         public int ReadTimeout { get; set; }

@@ -72,13 +72,14 @@ namespace MissionPlanner.Utilities
                 {
                     if (!String.IsNullOrEmpty(server))
                     {
-                        TcpClient cl = new TcpClient();
+                        using (TcpClient cl = new TcpClient())
+                        {
+                            cl.Connect(server, serverport);
 
-                        cl.Connect(server, serverport);
+                            log.Info("Connected " + server + ":" + serverport);
 
-                        log.Info("Connected " + server + ":" + serverport);
-
-                        ReadMessage(cl.GetStream());
+                            ReadMessage(cl.GetStream());
+                        }
                     }
                 }
                 catch (Exception ex) { log.Error(ex); }
@@ -86,26 +87,30 @@ namespace MissionPlanner.Utilities
                 // dump1090 sbs
                 try
                 {
-                    TcpClient cl = new TcpClient();
+                    using (TcpClient cl = new TcpClient())
+                    {
 
-                    cl.Connect(System.Net.IPAddress.Loopback, 30003);
+                        cl.Connect(System.Net.IPAddress.Loopback, 30003);
 
-                    log.Info("Connected loopback:30003");
+                        log.Info("Connected loopback:30003");
 
-                    ReadMessage(cl.GetStream());
+                        ReadMessage(cl.GetStream());
+                    }
                 }
                 catch (Exception) {  }
 
                 // dump1090 avr
                 try
                 {
-                    TcpClient cl = new TcpClient();
+                    using (TcpClient cl = new TcpClient())
+                    {
 
-                    cl.Connect(System.Net.IPAddress.Loopback, 30002);
+                        cl.Connect(System.Net.IPAddress.Loopback, 30002);
 
-                    log.Info("Connected loopback:30002");
+                        log.Info("Connected loopback:30002");
 
-                    ReadMessage(cl.GetStream());
+                        ReadMessage(cl.GetStream());
+                    }
                 }
                 catch (Exception) {  }
 
@@ -113,26 +118,30 @@ namespace MissionPlanner.Utilities
                 // rtl1090 -sbs1
                 try
                 {
-                    TcpClient cl = new TcpClient();
+                    using (TcpClient cl = new TcpClient())
+                    {
 
-                    cl.Connect(System.Net.IPAddress.Loopback, 31004);
+                        cl.Connect(System.Net.IPAddress.Loopback, 31004);
 
-                    log.Info("Connected loopback:31004");
+                        log.Info("Connected loopback:31004");
 
-                    ReadMessage(cl.GetStream());
+                        ReadMessage(cl.GetStream());
+                    }
                 }
                 catch (Exception) { }
 
                 // rtl1090 - avr
                 try
                 {
-                    TcpClient cl = new TcpClient();
+                    using (TcpClient cl = new TcpClient())
+                    {
 
-                    cl.Connect(System.Net.IPAddress.Loopback, 31001);
+                        cl.Connect(System.Net.IPAddress.Loopback, 31001);
 
-                    log.Info("Connected loopback:31001");
+                        log.Info("Connected loopback:31001");
 
-                    ReadMessage(cl.GetStream());
+                        ReadMessage(cl.GetStream());
+                    }
                 }
                 catch (Exception) {  }
 
@@ -140,13 +149,15 @@ namespace MissionPlanner.Utilities
                 // adsb#
                 try
                 {
-                    TcpClient cl = new TcpClient();
+                    using (TcpClient cl = new TcpClient())
+                    {
 
-                    cl.Connect(System.Net.IPAddress.Loopback, 47806);
+                        cl.Connect(System.Net.IPAddress.Loopback, 47806);
 
-                    log.Info("Connected loopback:47806");
+                        log.Info("Connected loopback:47806");
 
-                    ReadMessage(cl.GetStream());
+                        ReadMessage(cl.GetStream());
+                    }
                 }
                 catch (Exception) {  }
 
@@ -626,7 +637,7 @@ namespace MissionPlanner.Utilities
                             if (plla.Lat == 0 && plla.Lng == 0)
                                 continue;
                             if (UpdatePlanePosition != null && plla != null)
-                                UpdatePlanePosition(plla, new EventArgs());
+                                UpdatePlanePosition(plla, EventArgs.Empty);
                             //Console.WriteLine(plane.pllalocal(plane.llaeven));
                             Console.WriteLine(plane.ID + " " + plla);
                         }
@@ -682,7 +693,7 @@ namespace MissionPlanner.Utilities
                                 continue;
 
                             if (UpdatePlanePosition != null && plane != null)
-                                UpdatePlanePosition(new PointLatLngAltHdg(lat, lon, altitude / 3.048, (float)plane.heading, hex_ident), new EventArgs());
+                                UpdatePlanePosition(new PointLatLngAltHdg(lat, lon, altitude / 3.048, (float)plane.heading, hex_ident, DateTime.Now), EventArgs.Empty);
                         }
                         else if (strArray[1] == "4")
                         {
@@ -770,7 +781,7 @@ namespace MissionPlanner.Utilities
                                     continue;
                                 plla.Heading = (float)plane.heading;
                                 if (UpdatePlanePosition != null && plla != null)
-                                    UpdatePlanePosition(plla, new EventArgs());
+                                    UpdatePlanePosition(plla, EventArgs.Empty);
                                 //Console.WriteLine(plane.pllalocal(plane.llaeven));
                                 Console.WriteLine(plla);
                             }
@@ -1009,13 +1020,14 @@ namespace MissionPlanner.Utilities
                 this.Tag = plla.Tag;
             }
 
-            public PointLatLngAltHdg(double lat, double lng, double alt, float heading, string tag)
+            public PointLatLngAltHdg(double lat, double lng, double alt, float heading, string tag, DateTime time)
             {
                 this.Lat = lat;
                 this.Lng = lng;
                 this.Alt = alt;
                 this.Heading = heading;
                 this.Tag = tag;
+                this.Time = time;
             }
 
             public float Heading { get; set; }
@@ -1024,6 +1036,8 @@ namespace MissionPlanner.Utilities
             //{
               //  return new PointLatLngAltHdg(a.Lat,a.Lng,a.Alt,-1,a.Tag);
             //}
+
+            public DateTime Time { get; set; }
         }
     }
 }

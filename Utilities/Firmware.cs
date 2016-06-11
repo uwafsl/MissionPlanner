@@ -25,12 +25,28 @@ namespace MissionPlanner.Utilities
         string firmwareurl = "https://raw.github.com/diydrones/binary/master/Firmware/firmware2.xml";
 
         // ap 2.5 - ac 2.7
-        readonly string gcoldurl = ("https://meee146-planner.googlecode.com/git-history/!Hash!/Tools/MissionPlanner.lanner/Firmware/firmware2.xml");
-        readonly string gcoldfirmwareurl = ("https://meee146-planner.googlecode.com/git-history/!Hash!/Tools/MissionPlanner.lanner/Firmware/!Firmware!");
-        string[] gcoldurls = new string[] { "76ff91fe7b2940a509ea7dfd728542491f480372", "bb5ee0e1c3e643e7e359ffb4c8bde34aa7d4f996", "55ec5eaf662a56044ea25c894d235d17185f0660", "cb5b736976c7ed791ea45675c31f588ecb8228d4", "bcd5239322df38db011f183e48d596f215803838", "8709cc418e00326295abc562530413c0089807a7", "06a64192df594b0f81233dfb1f0214aab2cb2603", "7853ef3fad98e5053f228b7c1748c76858c4d282", "abe930ce723267697542388ef181328f00371f40", "26305d5790333f730cd396afcd08c165cde33ed7", "bc1f26ca40b076e3d06f173adad772fb25aa6512", "dfc5737c5efc1e7b78e908829a097624c273d9d7", "682065db449b6c79d89717908ed8beea1ed6a03a", "b21116847d35472b9ab770408cbeb88ed2ed0a95", "511e00bc89a554aea8768a274bff28af532cd335", "1da56714aa1ed88dcdb078a90d33bcef4eb4315f", "8aa4c7a1ed07648f31335926cc6bcc06c87dc536" };
+        readonly string gcoldurl =
+            ("https://meee146-planner.googlecode.com/git-history/!Hash!/Tools/MissionPlanner.lanner/Firmware/firmware2.xml");
+
+        readonly string gcoldfirmwareurl =
+            ("https://meee146-planner.googlecode.com/git-history/!Hash!/Tools/MissionPlanner.lanner/Firmware/!Firmware!");
+
+        string[] gcoldurls = new string[]
+        {
+            "76ff91fe7b2940a509ea7dfd728542491f480372", "bb5ee0e1c3e643e7e359ffb4c8bde34aa7d4f996",
+            "55ec5eaf662a56044ea25c894d235d17185f0660", "cb5b736976c7ed791ea45675c31f588ecb8228d4",
+            "bcd5239322df38db011f183e48d596f215803838", "8709cc418e00326295abc562530413c0089807a7",
+            "06a64192df594b0f81233dfb1f0214aab2cb2603", "7853ef3fad98e5053f228b7c1748c76858c4d282",
+            "abe930ce723267697542388ef181328f00371f40", "26305d5790333f730cd396afcd08c165cde33ed7",
+            "bc1f26ca40b076e3d06f173adad772fb25aa6512", "dfc5737c5efc1e7b78e908829a097624c273d9d7",
+            "682065db449b6c79d89717908ed8beea1ed6a03a", "b21116847d35472b9ab770408cbeb88ed2ed0a95",
+            "511e00bc89a554aea8768a274bff28af532cd335", "1da56714aa1ed88dcdb078a90d33bcef4eb4315f",
+            "8aa4c7a1ed07648f31335926cc6bcc06c87dc536"
+        };
+
         readonly string gholdurl = ("https://github.com/diydrones/binary/raw/!Hash!/Firmware/firmware2.xml");
         readonly string gholdfirmwareurl = ("https://github.com/diydrones/binary/raw/!Hash!/Firmware/!Firmware!");
-        string[] gholdurls = new string[] { };
+        string[] gholdurls = new string[] {};
         public List<KeyValuePair<string, string>> niceNames = new List<KeyValuePair<string, string>>();
 
         int ingetapmversion = 0;
@@ -46,16 +62,15 @@ namespace MissionPlanner.Utilities
             public string url2560_2;
             public string urlpx4v1;
             public string urlpx4v2;
+            public string urlpx4v4;
             public string urlvrbrainv40;
             public string urlvrbrainv45;
             public string urlvrbrainv50;
             public string urlvrbrainv51;
             public string urlvrbrainv52;
-            public string urlvrherov10;
+            public string urlvrcorev10;
             public string urlvrubrainv51;
             public string urlvrubrainv52;
-            public string urlvrgimbalv20;
-            public string urlvrugimbalv11;
             public string name;
             public string desc;
             public int k_format_version;
@@ -100,13 +115,13 @@ namespace MissionPlanner.Utilities
         }
 
 
-
         /// <summary>
         /// Load firmware history from file
         /// </summary>
         public Firmware()
         {
-            string file = Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + "FirmwareHistory.txt";
+            string file = Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar +
+                          "FirmwareHistory.txt";
 
             if (!File.Exists(file))
             {
@@ -135,11 +150,16 @@ namespace MissionPlanner.Utilities
                     {
                         niceNames.Add(new KeyValuePair<string, string>(gholdurls[a], gh.Substring(index + 1).Trim()));
                     }
-                    catch { niceNames.Add(new KeyValuePair<string, string>(gholdurls[a], gholdurls[a])); }
+                    catch
+                    {
+                        niceNames.Add(new KeyValuePair<string, string>(gholdurls[a], gholdurls[a]));
+                    }
 
                     a++;
                 }
             }
+
+            System.Threading.Thread.CurrentThread.CurrentUICulture = L10N.ConfigLang;
         }
 
         /// <summary>
@@ -152,7 +172,7 @@ namespace MissionPlanner.Utilities
                 firmwareurl = this.firmwareurl;
 
             // mirror support
-            ReplaceMirrorUrl(ref firmwareurl);
+            L10N.ReplaceMirrorUrl(ref firmwareurl);
 
             log.Info("getFWList");
 
@@ -161,16 +181,15 @@ namespace MissionPlanner.Utilities
             string url2560_2 = "";
             string px4 = "";
             string px4v2 = "";
+            string px4v4 = "";
             string vrbrainv40 = "";
             string vrbrainv45 = "";
             string vrbrainv50 = "";
             string vrbrainv51 = "";
             string vrbrainv52 = "";
-            string vrherov10 = "";
+            string vrcorev10 = "";
             string vrubrainv51 = "";
             string vrubrainv52 = "";
-            string vrgimbalv20 = "";
-            string vrugimbalv11 = "";
             string name = "";
             string desc = "";
             int k_format_version = 0;
@@ -181,7 +200,9 @@ namespace MissionPlanner.Utilities
 
             // this is for mono to a ssl server
             //ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy(); 
-            ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback((sender1, certificate, chain, policyErrors) => { return true; });
+            ServicePointManager.ServerCertificateValidationCallback =
+                new System.Net.Security.RemoteCertificateValidationCallback(
+                    (sender1, certificate, chain, policyErrors) => { return true; });
 
             updateProgress(-1, Strings.GettingFWList);
 
@@ -210,6 +231,9 @@ namespace MissionPlanner.Utilities
                             case "urlpx4v2":
                                 px4v2 = xmlreader.ReadString();
                                 break;
+                            case "urlpx4v4":
+                                px4v4 = xmlreader.ReadString();
+                                break;
                             case "urlvrbrainv40":
                                 vrbrainv40 = xmlreader.ReadString();
                                 break;
@@ -225,20 +249,14 @@ namespace MissionPlanner.Utilities
                             case "urlvrbrainv52":
                                 vrbrainv52 = xmlreader.ReadString();
                                 break;
-                            case "urlvrherov10":
-                                vrherov10 = xmlreader.ReadString();
+                            case "urlvrcorev10":
+                                vrcorev10 = xmlreader.ReadString();
                                 break;
                             case "urlvrubrainv51":
                                 vrubrainv51 = xmlreader.ReadString();
                                 break;
                             case "urlvrubrainv52":
                                 vrubrainv52 = xmlreader.ReadString();
-                                break;
-                            case "urlvrgimbalv20":
-                                vrgimbalv20 = xmlreader.ReadString();
-                                break;
-                            case "urlvrugimbalv11":
-                                vrugimbalv11 = xmlreader.ReadString();
                                 break;
                             case "name":
                                 name = xmlreader.ReadString();
@@ -259,16 +277,15 @@ namespace MissionPlanner.Utilities
                                     temp.url2560_2 = url2560_2;
                                     temp.urlpx4v1 = px4;
                                     temp.urlpx4v2 = px4v2;
+                                    temp.urlpx4v4 = px4v4;
                                     temp.urlvrbrainv40 = vrbrainv40;
                                     temp.urlvrbrainv45 = vrbrainv45;
                                     temp.urlvrbrainv50 = vrbrainv50;
                                     temp.urlvrbrainv51 = vrbrainv51;
                                     temp.urlvrbrainv52 = vrbrainv52;
-                                    temp.urlvrherov10 = vrherov10;
+                                    temp.urlvrcorev10 = vrcorev10;
                                     temp.urlvrubrainv51 = vrubrainv51;
                                     temp.urlvrubrainv52 = vrubrainv52;
-                                    temp.urlvrgimbalv20 = vrgimbalv20;
-                                    temp.urlvrugimbalv11 = vrugimbalv11;
                                     temp.k_format_version = k_format_version;
 
                                     try
@@ -290,9 +307,13 @@ namespace MissionPlanner.Utilities
                                                 //temp.name = name;
                                             }
                                         }
-                                        catch { }
+                                        catch
+                                        {
+                                        }
                                     }
-                                    catch { } // just in case
+                                    catch
+                                    {
+                                    } // just in case
 
                                     softwares.Add(temp);
                                 }
@@ -301,16 +322,15 @@ namespace MissionPlanner.Utilities
                                 url2560_2 = "";
                                 px4 = "";
                                 px4v2 = "";
+                                px4v4 = "";
                                 vrbrainv40 = "";
                                 vrbrainv45 = "";
                                 vrbrainv50 = "";
                                 vrbrainv51 = "";
                                 vrbrainv52 = "";
-                                vrherov10 = "";
+                                vrcorev10 = "";
                                 vrubrainv51 = "";
                                 vrubrainv52 = "";
-                                vrgimbalv20 = "";
-                                vrugimbalv11 = "";
                                 name = "";
                                 desc = "";
                                 k_format_version = 0;
@@ -341,9 +361,12 @@ namespace MissionPlanner.Utilities
 
         public static void SaveSoftwares(List<software> list)
         {
-            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(List<software>), new Type[] { typeof(software) });
+            System.Xml.Serialization.XmlSerializer writer =
+                new System.Xml.Serialization.XmlSerializer(typeof (List<software>), new Type[] {typeof (software)});
 
-            using (StreamWriter sw = new StreamWriter(Application.StartupPath + Path.DirectorySeparatorChar + "fwversions.xml"))
+            using (
+                StreamWriter sw =
+                    new StreamWriter(Application.StartupPath + Path.DirectorySeparatorChar + "fwversions.xml"))
             {
                 writer.Serialize(sw, list);
             }
@@ -353,15 +376,18 @@ namespace MissionPlanner.Utilities
         {
             try
             {
-                System.Xml.Serialization.XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(List<software>), new Type[] { typeof(software) });
+                System.Xml.Serialization.XmlSerializer reader =
+                    new System.Xml.Serialization.XmlSerializer(typeof (List<software>), new Type[] {typeof (software)});
 
-                using (StreamReader sr = new StreamReader(Application.StartupPath + Path.DirectorySeparatorChar + "fwversions.xml"))
+                using (
+                    StreamReader sr =
+                        new StreamReader(Application.StartupPath + Path.DirectorySeparatorChar + "fwversions.xml"))
                 {
-                    return (List<software>)reader.Deserialize(sr);
+                    return (List<software>) reader.Deserialize(sr);
                 }
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 log.Error(ex);
             }
 
@@ -381,14 +407,17 @@ namespace MissionPlanner.Utilities
         /// <returns></returns>
         void getAPMVersion(object tempin)
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = L10N.ConfigLang;
+
             try
             {
+                software temp = (software) tempin;
 
-                software temp = (software)tempin;
+                string baseurl = temp.urlpx4v2;
 
-                string baseurl = temp.url2560_2;
+                if (baseurl == "") return;
 
-                ReplaceMirrorUrl(ref baseurl);
+                L10N.ReplaceMirrorUrl(ref baseurl);
 
                 Uri url = new Uri(new Uri(baseurl), "git-version.txt");
 
@@ -397,6 +426,7 @@ namespace MissionPlanner.Utilities
                 updateProgress(-1, Strings.GettingFWVersion);
 
                 WebRequest wr = WebRequest.Create(url);
+                wr.Timeout = 10000;
                 WebResponse wresp = wr.GetResponse();
 
                 StreamReader sr = new StreamReader(wresp.GetResponseStream());
@@ -424,7 +454,10 @@ namespace MissionPlanner.Utilities
 
                 log.Info("no answer");
             }
-            catch (Exception ex) { log.Error(ex); }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
             finally
             {
                 lock (this)
@@ -455,28 +488,6 @@ namespace MissionPlanner.Utilities
                     return false;
                 }
 
-                int apmformat_version = -1; // fail continue
-
-                if (board != BoardDetect.boards.px4 && board != BoardDetect.boards.px4v2 && board != BoardDetect.boards.vrbrainv40 && board != BoardDetect.boards.vrbrainv45 && board != BoardDetect.boards.vrbrainv50 && board != BoardDetect.boards.vrbrainv51 && board != BoardDetect.boards.vrbrainv52 && board != BoardDetect.boards.vrherov10 && board != BoardDetect.boards.vrubrainv51 && board != BoardDetect.boards.vrubrainv52 && board != BoardDetect.boards.vrgimbalv20 && board != BoardDetect.boards.vrugimbalv11)
-                {
-                    try
-                    {
-
-                        apmformat_version = BoardDetect.decodeApVar(comport, board);
-                    }
-                    catch { }
-
-                    if (apmformat_version != -1 && apmformat_version != temp.k_format_version)
-                    {
-                        if (DialogResult.No == CustomMessageBox.Show(Strings.EppromChanged, String.Format(Strings.EppromFormatChanged, apmformat_version, temp.k_format_version), MessageBoxButtons.YesNo)) ;
-                        {
-                            CustomMessageBox.Show(Strings.PleaseConnectAndBackupConfig);
-                            return false;
-                        }
-                    }
-                }
-
-
                 log.Info("Detected a " + board);
 
                 updateProgress(-1, Strings.DetectedA + board);
@@ -502,6 +513,10 @@ namespace MissionPlanner.Utilities
                 {
                     baseurl = temp.urlpx4v2.ToString();
                 }
+                else if (board == BoardDetect.boards.px4v4)
+                {
+                    baseurl = temp.urlpx4v4.ToString();
+                }
                 else if (board == BoardDetect.boards.vrbrainv40)
                 {
                     baseurl = temp.urlvrbrainv40.ToString();
@@ -522,9 +537,9 @@ namespace MissionPlanner.Utilities
                 {
                     baseurl = temp.urlvrbrainv52.ToString();
                 }
-                else if (board == BoardDetect.boards.vrherov10)
+                else if (board == BoardDetect.boards.vrcorev10)
                 {
-                    baseurl = temp.urlvrherov10.ToString();
+                    baseurl = temp.urlvrcorev10.ToString();
                 }
                 else if (board == BoardDetect.boards.vrubrainv51)
                 {
@@ -534,25 +549,25 @@ namespace MissionPlanner.Utilities
                 {
                     baseurl = temp.urlvrubrainv52.ToString();
                 }
-                else if (board == BoardDetect.boards.vrgimbalv20)
-                {
-                    baseurl = temp.urlvrgimbalv20.ToString();
-                }
-                else if (board == BoardDetect.boards.vrugimbalv11)
-                {
-                    baseurl = temp.urlvrugimbalv11.ToString();
-                }
                 else
                 {
                     CustomMessageBox.Show(Strings.InvalidBoardType);
                     return false;
                 }
 
+                if (board < BoardDetect.boards.px4)
+                {
+                    if (temp.name.ToLower().Contains("arducopter"))
+                    {
+                        CustomMessageBox.Show(Strings.ThisBoardHasBeenRetired, Strings.Note);
+                    }
+                }
+
                 if (historyhash != "")
                     baseurl = getUrl(historyhash, baseurl);
 
                 // update to use mirror url
-                ReplaceMirrorUrl(ref baseurl);
+                L10N.ReplaceMirrorUrl(ref baseurl);
 
                 log.Info("Using " + baseurl);
 
@@ -563,55 +578,68 @@ namespace MissionPlanner.Utilities
                 request.Method = "GET";
                 // Get the request stream.
                 Stream dataStream; //= request.GetRequestStream();
-                // Get the response.
-                WebResponse response = request.GetResponse();
-                // Display the status.
-                log.Info(((HttpWebResponse)response).StatusDescription);
-                // Get the stream containing content returned by the server.
-                dataStream = response.GetResponseStream();
-
-                long bytes = response.ContentLength;
-                long contlen = bytes;
-
-                byte[] buf1 = new byte[1024];
-
-                FileStream fs = new FileStream(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"firmware.hex", FileMode.Create);
-
-                updateProgress(0, Strings.DownloadingFromInternet);
-
-                dataStream.ReadTimeout = 30000;
-
-                while (dataStream.CanRead)
+                // Get the response (using statement is exception safe)
+                using (WebResponse response = request.GetResponse())
                 {
-                    try
+                    // Display the status.
+                    log.Info(((HttpWebResponse)response).StatusDescription);
+                    // Get the stream containing content returned by the server.
+                    using (dataStream = response.GetResponseStream())
                     {
-                        updateProgress(50, Strings.DownloadingFromInternet);
-                    }
-                    catch { }
-                    int len = dataStream.Read(buf1, 0, 1024);
-                    if (len == 0)
-                        break;
-                    bytes -= len;
-                    fs.Write(buf1, 0, len);
-                }
 
-                fs.Close();
-                dataStream.Close();
-                response.Close();
+                        long bytes = response.ContentLength;
+                        long contlen = bytes;
+
+                        byte[] buf1 = new byte[1024];
+
+                        using (FileStream fs = new FileStream(
+                                Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar +
+                                @"firmware.hex", FileMode.Create))
+                        {
+                            updateProgress(0, Strings.DownloadingFromInternet);
+
+                            long length = response.ContentLength;
+                            long progress = 0;
+                            dataStream.ReadTimeout = 30000;
+
+                            while (dataStream.CanRead)
+                            {
+                                try
+                                {
+                                    updateProgress(length == 0 ? 50 : (int)((progress * 100) / length), Strings.DownloadingFromInternet);
+                                }
+                                catch
+                                {
+                                }
+                                int len = dataStream.Read(buf1, 0, 1024);
+                                if (len == 0)
+                                    break;
+                                progress += len;
+                                bytes -= len;
+                                fs.Write(buf1, 0, len);
+                            }
+
+                            fs.Close();
+                        }
+                        dataStream.Close();
+                    }
+                    response.Close();
+                }
 
                 updateProgress(100, Strings.DownloadedFromInternet);
                 log.Info("Downloaded");
             }
-            catch (Exception ex) 
-            { 
-                updateProgress(50, Strings.FailedDownload); 
-                CustomMessageBox.Show("Failed to download new firmware : " + ex.ToString()); 
-                return false; 
+            catch (Exception ex)
+            {
+                updateProgress(50, Strings.FailedDownload);
+                CustomMessageBox.Show("Failed to download new firmware : " + ex.ToString());
+                return false;
             }
 
             MissionPlanner.Utilities.Tracking.AddFW(temp.name, board.ToString());
 
-            return UploadFlash(comport, Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"firmware.hex", board);
+            return UploadFlash(comport,
+                Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"firmware.hex", board);
         }
 
         void apmtype(object temp)
@@ -619,9 +647,12 @@ namespace MissionPlanner.Utilities
             try
             {
                 // Create a request using a URL that can receive a post. 
-                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://vps.oborne.me/axs/ax.pl?" + (string)temp);
+                HttpWebRequest request =
+                    (HttpWebRequest) HttpWebRequest.Create("http://vps.oborne.me/axs/ax.pl?" + (string) temp);
                 //request.AllowAutoRedirect = true;
-                request.UserAgent = MainV2.instance.Text + " (res" + Screen.PrimaryScreen.Bounds.Width + "x" + Screen.PrimaryScreen.Bounds.Height + "; " + Environment.OSVersion.VersionString + "; cores " + Environment.ProcessorCount + ")";
+                request.UserAgent = MainV2.instance.Text + " (res" + Screen.PrimaryScreen.Bounds.Width + "x" +
+                                    Screen.PrimaryScreen.Bounds.Height + "; " + Environment.OSVersion.VersionString +
+                                    "; cores " + Environment.ProcessorCount + ")";
                 request.Timeout = 10000;
                 // Set the Method property of the request to POST.
                 request.Method = "GET";
@@ -629,14 +660,16 @@ namespace MissionPlanner.Utilities
                 // Get the response.
                 WebResponse response = request.GetResponse();
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         /// <summary>
         /// upload to px4 standalone
         /// </summary>
         /// <param name="filename"></param>
-        public bool UploadPX4(string filename)
+        public bool UploadPX4(string filename, BoardDetect.boards board)
         {
             Uploader up;
             updateProgress(0, "Reading Hex File");
@@ -656,7 +689,6 @@ namespace MissionPlanner.Utilities
                 // check if we are seeing heartbeats
                 MainV2.comPort.BaseStream.Open();
                 MainV2.comPort.giveComport = true;
-                BoardDetect.boards board = BoardDetect.DetectBoard(MainV2.comPortName);
 
                 if (MainV2.comPort.getHeartBeat().Length > 0)
                 {
@@ -666,19 +698,20 @@ namespace MissionPlanner.Utilities
                     //specific action for VRBRAIN4 board that needs to be manually disconnected before uploading
                     if (board == BoardDetect.boards.vrbrainv40)
                     {
-                        CustomMessageBox.Show("VRBRAIN 4 detected. Please unplug the board then press OK and plug back in.\n");
+                        CustomMessageBox.Show(
+                            "VRBRAIN 4 detected. Please unplug the board then press OK and plug back in.\n");
                     }
                 }
                 else
                 {
                     MainV2.comPort.BaseStream.Close();
-                    CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+                    CustomMessageBox.Show(Strings.PleaseUnplugTheBoardAnd);
                 }
             }
             catch (Exception ex)
             {
                 log.Error(ex);
-                CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+                CustomMessageBox.Show(Strings.PleaseUnplugTheBoardAnd);
             }
 
             DateTime DEADLINE = DateTime.Now.AddSeconds(30);
@@ -710,7 +743,8 @@ namespace MissionPlanner.Utilities
                     {
                         up.identify();
                         updateProgress(-1, "Identify");
-                        log.InfoFormat("Found board type {0} boardrev {1} bl rev {2} fwmax {3} on {4}", up.board_type, up.board_rev, up.bl_rev, up.fw_maxsize, port);
+                        log.InfoFormat("Found board type {0} boardrev {1} bl rev {2} fwmax {3} on {4}", up.board_type,
+                            up.board_rev, up.bl_rev, up.fw_maxsize, port);
 
                         up.ProgressEvent += new Uploader.ProgressEventHandler(up_ProgressEvent);
                         up.LogEvent += new Uploader.LogEventHandler(up_LogEvent);
@@ -728,58 +762,6 @@ namespace MissionPlanner.Utilities
 
                     try
                     {
-                        up.verifyotp();
-
-                        if (up.libre)
-                        {
-                            MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "libre", "");
-                        }
-                        else 
-                        {
-                            MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "Pass", "");
-                        }
-                    }
-                    catch (Org.BouncyCastle.Security.InvalidKeyException ex) 
-                    {
-                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp","InvalidKeyException","");
-                        log.Error(ex);
-                        CustomMessageBox.Show("You are using unsupported hardware.\nThis board does not contain a valid certificate of authenticity.\nPlease contact your hardware vendor about signing your hardware.", "Invalid Cert"); 
-                        up.skipotp = true;
-                    }
-                    catch (FormatException ex)
-                    {
-                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "FormatException", "");
-                        log.Error(ex);
-                        CustomMessageBox.Show("You are using unsupported hardware.\nThis board does not contain a valid certificate of authenticity.\nPlease contact your hardware vendor about signing your hardware.", "Invalid Cert");
-                        up.skipotp = true;
-                    }
-                    catch (IOException ex) 
-                    {
-                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "IOException", "");
-                        log.Error(ex);
-                        CustomMessageBox.Show("lost communication with the board.", "lost comms");
-                        up.close();
-                        return false;
-                    }
-                    catch (TimeoutException ex)
-                    {
-                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "TimeoutException", "");
-                        log.Error(ex);
-                        CustomMessageBox.Show("lost communication with the board.", "lost comms");
-                        up.close();
-                        return false;
-                    }
-                    catch (Exception ex)
-                    {
-                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "Exception", "");
-                        log.Error(ex);
-                        CustomMessageBox.Show("lost communication with the board. " + ex.ToString(), "lost comms");
-                        up.close();
-                        return false;
-                    }
-
-                    try
-                    {
                         up.currentChecksum(fw);
                     }
                     catch (IOException ex)
@@ -793,7 +775,7 @@ namespace MissionPlanner.Utilities
                     {
                         up.__reboot();
                         up.close();
-                        CustomMessageBox.Show("No need to upload. already on the board");
+                        CustomMessageBox.Show(Strings.NoNeedToUpload);
                         return true;
                     }
 
@@ -816,7 +798,7 @@ namespace MissionPlanner.Utilities
                     }
 
                     // wait for IO firmware upgrade and boot to a mavlink state
-                    CustomMessageBox.Show("Please wait for the musical tones to finish before clicking OK");
+                    CustomMessageBox.Show(Strings.PleaseWaitForTheMusicalTones);
 
                     return true;
                 }
@@ -830,9 +812,8 @@ namespace MissionPlanner.Utilities
         /// upload to vrbrain standalone
         /// </summary>
         /// <param name="filename"></param>
-        public bool UploadVRBRAIN(string filename)
+        public bool UploadVRBRAIN(string filename, BoardDetect.boards board)
         {
-
             px4uploader.Uploader up;
             updateProgress(0, "Reading Hex File");
             px4uploader.Firmware fw;
@@ -851,7 +832,6 @@ namespace MissionPlanner.Utilities
                 // check if we are seeing heartbeats
                 MainV2.comPort.BaseStream.Open();
                 MainV2.comPort.giveComport = true;
-                BoardDetect.boards board = BoardDetect.DetectBoard(MainV2.comPortName);
 
                 if (MainV2.comPort.getHeartBeat().Length > 0)
                 {
@@ -861,20 +841,20 @@ namespace MissionPlanner.Utilities
                     //specific action for VRBRAIN4 board that needs to be manually disconnected before uploading
                     if (board == BoardDetect.boards.vrbrainv40)
                     {
-                        CustomMessageBox.Show("VRBRAIN 4 detected. Please unplug the board, and then press OK and plug back in.\n");
+                        CustomMessageBox.Show(
+                            "VRBRAIN 4 detected. Please unplug the board, and then press OK and plug back in.\n");
                     }
-
                 }
                 else
                 {
                     MainV2.comPort.BaseStream.Close();
-                    CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+                    CustomMessageBox.Show(Strings.PleaseUnplugTheBoardAnd);
                 }
             }
             catch (Exception ex)
             {
                 log.Error(ex);
-                CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+                CustomMessageBox.Show(Strings.PleaseUnplugTheBoardAnd);
             }
 
             DateTime DEADLINE = DateTime.Now.AddSeconds(30);
@@ -906,7 +886,8 @@ namespace MissionPlanner.Utilities
                     {
                         up.identify();
                         updateProgress(-1, "Identify");
-                        log.InfoFormat("Found board type {0} boardrev {1} bl rev {2} fwmax {3} on {4}", up.board_type, up.board_rev, up.bl_rev, up.fw_maxsize, port);
+                        log.InfoFormat("Found board type {0} boardrev {1} bl rev {2} fwmax {3} on {4}", up.board_type,
+                            up.board_rev, up.bl_rev, up.fw_maxsize, port);
                     }
                     catch (Exception)
                     {
@@ -926,7 +907,7 @@ namespace MissionPlanner.Utilities
                     {
                         up.__reboot();
                         up.close();
-                        CustomMessageBox.Show("No need to upload. already on the board");
+                        CustomMessageBox.Show(Strings.NoNeedToUpload);
                         return true;
                     }
 
@@ -951,9 +932,12 @@ namespace MissionPlanner.Utilities
                         up.close();
                     }
 
-                    if (up.board_type == 1140 || up.board_type == 1145 || up.board_type == 1150 || up.board_type == 1151 || up.board_type == 1152 || up.board_type == 1210 || up.board_type == 1351 || up.board_type == 1352 || up.board_type == 1411 || up.board_type == 1520)
-                    {//VR boards have no tone alarm
-                        if(up.board_type == 1140)
+                    if (up.board_type == 1140 || up.board_type == 1145 || up.board_type == 1150 || up.board_type == 1151 ||
+                        up.board_type == 1152 || up.board_type == 1210 || up.board_type == 1351 || up.board_type == 1352 ||
+                        up.board_type == 1411 || up.board_type == 1520)
+                    {
+//VR boards have no tone alarm
+                        if (up.board_type == 1140)
                             CustomMessageBox.Show("Upload complete! Please unplug and reconnect board.");
                         else
                             CustomMessageBox.Show("Upload complete!");
@@ -961,7 +945,7 @@ namespace MissionPlanner.Utilities
                     else
                     {
                         // wait for IO firmware upgrade and boot to a mavlink state
-                        CustomMessageBox.Show("Please wait for the musical tones to finish before clicking OK");
+                        CustomMessageBox.Show(Strings.PleaseWaitForTheMusicalTones);
                     }
                     return true;
                 }
@@ -983,7 +967,7 @@ namespace MissionPlanner.Utilities
 
         void up_ProgressEvent(double completed)
         {
-            updateProgress((int)completed, _message);
+            updateProgress((int) completed, _message);
         }
 
         /// <summary>
@@ -993,22 +977,25 @@ namespace MissionPlanner.Utilities
         /// <param name="board"></param>
         public bool UploadFlash(string comport, string filename, BoardDetect.boards board)
         {
-            if (board == BoardDetect.boards.px4 || board == BoardDetect.boards.px4v2)
+            if (board == BoardDetect.boards.px4 || board == BoardDetect.boards.px4v2 || board == BoardDetect.boards.px4v4)
             {
                 try
                 {
-                    return UploadPX4(filename);
+                    return UploadPX4(filename, board);
                 }
-                catch (MissingFieldException) 
+                catch (MissingFieldException)
                 {
-                    CustomMessageBox.Show("Please update, your install is currupt",Strings.ERROR);
+                    CustomMessageBox.Show("Please update, your install is currupt", Strings.ERROR);
                     return false;
                 }
             }
 
-            if (board == BoardDetect.boards.vrbrainv40 || board == BoardDetect.boards.vrbrainv45 || board == BoardDetect.boards.vrbrainv50 || board == BoardDetect.boards.vrbrainv51 || board == BoardDetect.boards.vrbrainv52 || board == BoardDetect.boards.vrherov10 || board == BoardDetect.boards.vrubrainv51 || board == BoardDetect.boards.vrubrainv52 || board == BoardDetect.boards.vrgimbalv20 || board == BoardDetect.boards.vrugimbalv11)
+            if (board == BoardDetect.boards.vrbrainv40 || board == BoardDetect.boards.vrbrainv45 ||
+                board == BoardDetect.boards.vrbrainv50 || board == BoardDetect.boards.vrbrainv51 ||
+                board == BoardDetect.boards.vrbrainv52 || board == BoardDetect.boards.vrcorev10 ||
+                board == BoardDetect.boards.vrubrainv51 || board == BoardDetect.boards.vrubrainv52)
             {
-                return UploadVRBRAIN(filename);
+                return UploadVRBRAIN(filename, board);
             }
 
             byte[] FLASH = new byte[1];
@@ -1089,7 +1076,7 @@ namespace MissionPlanner.Utilities
 
                     while (start < FLASH.Length)
                     {
-                        updateProgress((int)((start / (float)FLASH.Length) * 100), Strings.VerifyFirmware);
+                        updateProgress((int) ((start/(float) FLASH.Length)*100), Strings.VerifyFirmware);
                         port.setaddress(start);
                         //log.Info("Downloading " + length + " at " + start);
                         port.downloadflash(length).CopyTo(flashverify, start);
@@ -1100,7 +1087,9 @@ namespace MissionPlanner.Utilities
                     {
                         if (FLASH[s] != flashverify[s])
                         {
-                            CustomMessageBox.Show(String.Format(Strings.UploadSucceededButVerifyFailed, FLASH[s].ToString("X"), flashverify[s].ToString("X")) + s);
+                            CustomMessageBox.Show(
+                                String.Format(Strings.UploadSucceededButVerifyFailed, FLASH[s].ToString("X"),
+                                    flashverify[s].ToString("X")) + s);
                             port.Close();
                             return false;
                         }
@@ -1117,17 +1106,21 @@ namespace MissionPlanner.Utilities
 
                 try
                 {
-                    ((SerialPort)port).Open();
+                    ((SerialPort) port).Open();
                 }
-                catch { }
+                catch
+                {
+                }
 
                 //CustomMessageBox.Show("1. If you are updating your firmware from a previous version, please verify your parameters are appropriate for the new version.\n2. Please ensure your accelerometer is calibrated after installing or re-calibrated after updating the firmware.");
 
                 try
                 {
-                    ((SerialPort)port).Close();
+                    ((SerialPort) port).Close();
                 }
-                catch { }
+                catch
+                {
+                }
 
                 updateProgress(100, Strings.Done);
             }
@@ -1139,7 +1132,9 @@ namespace MissionPlanner.Utilities
                 {
                     port.Close();
                 }
-                catch { }
+                catch
+                {
+                }
                 return false;
             }
             MainV2.comPort.giveComport = false;
@@ -1153,7 +1148,7 @@ namespace MissionPlanner.Utilities
         /// <returns></returns>
         byte[] readIntelHEXv2(StreamReader sr)
         {
-            byte[] FLASH = new byte[1024 * 1024];
+            byte[] FLASH = new byte[1024*1024];
 
             int optionoffset = 0;
             int total = 0;
@@ -1161,7 +1156,8 @@ namespace MissionPlanner.Utilities
 
             while (!sr.EndOfStream)
             {
-                updateProgress((int)(((float)sr.BaseStream.Position / (float)sr.BaseStream.Length) * 100), Strings.ReadingHex);
+                updateProgress((int) (((float) sr.BaseStream.Position/(float) sr.BaseStream.Length)*100),
+                    Strings.ReadingHex);
 
                 string line = sr.ReadLine();
 
@@ -1174,10 +1170,10 @@ namespace MissionPlanner.Utilities
 
                     if (option == 0)
                     {
-                        string data = line.Substring(9, length * 2);
+                        string data = line.Substring(9, length*2);
                         for (int i = 0; i < length; i++)
                         {
-                            byte byte1 = Convert.ToByte(data.Substring(i * 2, 2), 16);
+                            byte byte1 = Convert.ToByte(data.Substring(i*2, 2), 16);
                             FLASH[optionoffset + address] = byte1;
                             address++;
                             if ((optionoffset + address) > total)
@@ -1186,7 +1182,7 @@ namespace MissionPlanner.Utilities
                     }
                     else if (option == 2)
                     {
-                        optionoffset = (int)Convert.ToUInt16(line.Substring(9, 4), 16) << 4;
+                        optionoffset = (int) Convert.ToUInt16(line.Substring(9, 4), 16) << 4;
                     }
                     else if (option == 1)
                     {
@@ -1195,11 +1191,11 @@ namespace MissionPlanner.Utilities
                     int checksum = Convert.ToInt32(line.Substring(line.Length - 2, 2), 16);
 
                     byte checksumact = 0;
-                    for (int z = 0; z < ((line.Length - 1 - 2) / 2); z++) // minus 1 for : then mins 2 for checksum itself
+                    for (int z = 0; z < ((line.Length - 1 - 2)/2); z++) // minus 1 for : then mins 2 for checksum itself
                     {
-                        checksumact += Convert.ToByte(line.Substring(z * 2 + 1, 2), 16);
+                        checksumact += Convert.ToByte(line.Substring(z*2 + 1, 2), 16);
                     }
-                    checksumact = (byte)(0x100 - checksumact);
+                    checksumact = (byte) (0x100 - checksumact);
 
                     if (checksumact != checksum)
                     {
@@ -1219,35 +1215,6 @@ namespace MissionPlanner.Utilities
             Array.Resize<byte>(ref FLASH, total);
 
             return FLASH;
-        }
-
-        string ReplaceMirrorUrl(ref string url)
-        {
-            switch (System.Globalization.CultureInfo.CurrentUICulture.Name)
-            {
-                case "zh-CN":
-                case "zh-Hans":
-                    if (url.Contains("raw.github.com"))
-                    {
-                        url = url.Replace("raw.github.com", "githubraw.diywrj.com");
-                    }
-                    else if (url.Contains("firmware.diydrones.com"))
-                    {
-                        url = url.Replace("firmware.diydrones.com", "firmware.diywrj.com");
-                    }
-                    else if (url.Contains("github.com"))
-                    {
-                        url = url.Replace("github.com", "github.diywrj.com");
-                    }
-                    else
-                    {
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            return url;
         }
     }
 }

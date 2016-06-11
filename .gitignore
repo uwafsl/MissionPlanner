@@ -18,3 +18,8 @@ obj/
 /macos.bat
 /logo.png
 *.vsp
+/sitl
+/cov-int
+*.pyc
+/ExtLibs/Mavlink/Mavlink.cs
+/ExtLibs/Mavlink/mavlink

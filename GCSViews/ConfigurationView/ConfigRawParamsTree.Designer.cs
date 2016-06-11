@@ -44,9 +44,10 @@
             this.BUT_writePIDS = new MissionPlanner.Controls.MyButton();
             this.BUT_save = new MissionPlanner.Controls.MyButton();
             this.BUT_load = new MissionPlanner.Controls.MyButton();
-            this.BUT_find = new MissionPlanner.Controls.MyButton();
             this.BUT_paramfileload = new MissionPlanner.Controls.MyButton();
             this.BUT_reset_params = new MissionPlanner.Controls.MyButton();
+            this.txt_search = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Params)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +76,6 @@
             this.Params.AllColumns.Add(this.olvColumn4);
             this.Params.AllColumns.Add(this.olvColumn5);
             resources.ApplyResources(this.Params, "Params");
-            this.Params.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.Params.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1,
             this.olvColumn2,
@@ -94,6 +94,7 @@
             this.Params.View = System.Windows.Forms.View.Details;
             this.Params.VirtualMode = true;
             this.Params.CellEditFinishing += new BrightIdeasSoftware.CellEditEventHandler(this.Params_CellEditFinishing);
+            this.Params.CellClick += new System.EventHandler<BrightIdeasSoftware.CellClickEventArgs>(this.Params_CellClick);
             this.Params.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.Params_FormatRow);
             // 
             // olvColumn1
@@ -130,6 +131,7 @@
             // 
             this.olvColumn5.AspectName = "desc";
             this.olvColumn5.CellPadding = null;
+            this.olvColumn5.FillsFreeSpace = true;
             this.olvColumn5.IsEditable = false;
             resources.ApplyResources(this.olvColumn5, "olvColumn5");
             this.olvColumn5.WordWrap = true;
@@ -169,13 +171,6 @@
             this.BUT_load.UseVisualStyleBackColor = true;
             this.BUT_load.Click += new System.EventHandler(this.BUT_load_Click);
             // 
-            // BUT_find
-            // 
-            resources.ApplyResources(this.BUT_find, "BUT_find");
-            this.BUT_find.Name = "BUT_find";
-            this.BUT_find.UseVisualStyleBackColor = true;
-            this.BUT_find.Click += new System.EventHandler(this.BUT_find_Click);
-            // 
             // BUT_paramfileload
             // 
             resources.ApplyResources(this.BUT_paramfileload, "BUT_paramfileload");
@@ -190,14 +185,26 @@
             this.BUT_reset_params.UseVisualStyleBackColor = true;
             this.BUT_reset_params.Click += new System.EventHandler(this.BUT_reset_params_Click);
             // 
+            // txt_search
+            // 
+            resources.ApplyResources(this.txt_search, "txt_search");
+            this.txt_search.Name = "txt_search";
+            this.txt_search.TextChanged += new System.EventHandler(this.txt_search_TextChanged);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
             // ConfigRawParamsTree
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txt_search);
             this.Controls.Add(this.Params);
             this.Controls.Add(this.BUT_reset_params);
             this.Controls.Add(this.BUT_paramfileload);
             this.Controls.Add(this.CMB_paramfiles);
-            this.Controls.Add(this.BUT_find);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BUT_compare);
             this.Controls.Add(this.BUT_rerequestparams);
@@ -221,7 +228,6 @@
         private Controls.MyButton BUT_load;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label1;
-        private Controls.MyButton BUT_find;
         private Controls.MyButton BUT_paramfileload;
         private System.Windows.Forms.ComboBox CMB_paramfiles;
         private Controls.MyButton BUT_reset_params;
@@ -231,5 +237,7 @@
         private BrightIdeasSoftware.OLVColumn olvColumn3;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
         private BrightIdeasSoftware.OLVColumn olvColumn5;
+        private System.Windows.Forms.TextBox txt_search;
+        private System.Windows.Forms.Label label2;
     }
 }

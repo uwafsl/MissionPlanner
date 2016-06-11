@@ -140,21 +140,25 @@ namespace MissionPlanner.Utilities
 
             try
             {
-                string[] lines = ex.StackTrace.Split(new char[] { '\n' });
-
                 string reportline = "";
 
-                foreach (string line in lines)
+                if (ex.StackTrace != null)
                 {
-                    if (line.Contains(":line"))
-                    {
-                        reportline = line;
-                        break;
-                    }
-                }
-                // 150 bytes
+                    string[] lines = ex.StackTrace.Split(new char[] {'\n'});
 
-                reportline = reportline.Replace(@"c:\Users\hog\Documents\Visual Studio 2010\Projects\MissionPlanner.", "");
+                    foreach (string line in lines)
+                    {
+                        if (line.Contains(":line"))
+                        {
+                            reportline = line;
+                            break;
+                        }
+                    }
+                    // 150 bytes
+
+                    reportline =
+                        reportline.Replace(@"c:\Users\hog\Documents\Visual Studio 2010\Projects\MissionPlanner.", "");
+                }
 
                 param.Add(new KeyValuePair<string, string>("exd", ex.Message + reportline));
             }
@@ -163,8 +167,13 @@ namespace MissionPlanner.Utilities
                 param.Add(new KeyValuePair<string, string>("exd", ex.Message));
             }
             param.Add(new KeyValuePair<string, string>("exf", "0"));
-
-            param.Add(new KeyValuePair<string, string>("cd5", ex.ToString().Substring(0,140)));
+            try
+            {
+                param.Add(new KeyValuePair<string, string>("cd5", ex.ToString().Substring(0, 140)));
+            }
+            catch
+            {
+            }
 
             param.Add(new KeyValuePair<string, string>("ul", Application.CurrentCulture.Name));
             param.Add(new KeyValuePair<string, string>("sd", Screen.PrimaryScreen.BitsPerPixel + "-bits"));
@@ -281,15 +290,17 @@ namespace MissionPlanner.Utilities
                     streamWriter.Write(data);
                     streamWriter.Flush();
 
-                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                    if (httpResponse.StatusCode >= HttpStatusCode.OK && (int)httpResponse.StatusCode < 300)
+                    using (var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse())
                     {
-                        // response is a gif file
-                        log.Debug(httpResponse.StatusCode);
-                    }
-                    else
-                    {
-                        log.Debug(httpResponse.StatusCode);
+                        if (httpResponse.StatusCode >= HttpStatusCode.OK && (int) httpResponse.StatusCode < 300)
+                        {
+                            // response is a gif file
+                            log.Debug(httpResponse.StatusCode);
+                        }
+                        else
+                        {
+                            log.Debug(httpResponse.StatusCode);
+                        }
                     }
                 }
             }

@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using log4net;
+using Microsoft.Scripting.Utils;
+using MissionPlanner.Properties;
+using OpenTK.Graphics.ES20;
 
 namespace MissionPlanner.Plugin
 {
@@ -15,10 +20,31 @@ namespace MissionPlanner.Plugin
 
         public static List<Plugin> Plugins = new List<Plugin>();
 
+        static Assembly LoadFromSameFolder(object sender, ResolveEventArgs args)
+        {
+            if (args.RequestingAssembly == null)
+                return null;
+            string folderPath = Path.GetDirectoryName(args.RequestingAssembly.Location);
+            string[] search = Directory.GetFiles(folderPath, new AssemblyName(args.Name).Name + ".dll",
+                SearchOption.AllDirectories);
+
+            foreach (var file in search)
+            {
+                Assembly assembly = Assembly.LoadFrom(file);
+                if (assembly.FullName == args.Name) 
+                    return assembly;
+            }
+
+            return null;
+        }
+
         public static void Load(String file)
         {
             if (!File.Exists(file) || !file.EndsWith(".dll", true, null))
                 return;
+
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.AssemblyResolve += new ResolveEventHandler(LoadFromSameFolder);
 
             Assembly asm = null;
 
@@ -36,9 +62,9 @@ namespace MissionPlanner.Plugin
             try
             {
                 Type[] types = asm.GetTypes();
-                Type type = typeof(MissionPlanner.Plugin.Plugin);
+                Type type = typeof (MissionPlanner.Plugin.Plugin);
                 foreach (var t in types)
-                    if (type.IsAssignableFrom((Type)t))
+                    if (type.IsAssignableFrom((Type) t))
                     {
                         pluginInfo = t;
                         break;
@@ -48,8 +74,8 @@ namespace MissionPlanner.Plugin
                 {
                     log.Info("Plugin Load " + file);
 
-                    Object o = Activator.CreateInstance(pluginInfo);
-                    Plugin plugin = (Plugin)o;
+                    Object o = Activator.CreateInstance(pluginInfo, BindingFlags.Default, null, null, CultureInfo.CurrentUICulture);
+                    Plugin plugin = (Plugin) o;
 
                     plugin.Assembly = asm;
 
@@ -72,7 +98,8 @@ namespace MissionPlanner.Plugin
 
         public static void LoadAll()
         {
-            string path = Application.StartupPath +  Path.DirectorySeparatorChar+ "plugins" +  Path.DirectorySeparatorChar;
+            string path = Application.StartupPath + Path.DirectorySeparatorChar + "plugins" +
+                          Path.DirectorySeparatorChar;
 
             if (!Directory.Exists(path))
                 return;

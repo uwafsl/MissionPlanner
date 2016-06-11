@@ -339,7 +339,7 @@ Timeout in {0}</value>
     <value>Communication Error - no connection</value>
   </data>
   <data name="DetectedA" xml:space="preserve">
-    <value>Detected a</value>
+    <value>Detected a </value>
   </data>
   <data name="DetectingBoardVersion" xml:space="preserve">
     <value>Detecting Board Version</value>
@@ -426,9 +426,201 @@ Do you wish to continue?</value>
   <data name="UpdateFound" xml:space="preserve">
     <value>Update Found
 
-Do you wish to update now? [link;</value>
+Do you wish to update now? </value>
   </data>
   <data name="UpdateNow" xml:space="preserve">
     <value>Update Now</value>
+  </data>
+  <data name="RawParamWarning" xml:space="preserve">
+    <value>Raw Param Warning</value>
+  </data>
+  <data name="RawParamWarningi" xml:space="preserve">
+    <value>All values on this screen are not min/max checked. Please double check your input.
+Please use Standard/Advanced Params for the safe settings</value>
+  </data>
+  <data name="ShowMeAgain" xml:space="preserve">
+    <value>Show me again?</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LinkStats" xml:space="preserve">
+    <value>Link Stats</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="AreYouSureYouWantToUpload" xml:space="preserve">
+    <value>Are you sure you want to upload </value>
+  </data>
+  <data name="Beta" xml:space="preserve">
+    <value>Beta</value>
+  </data>
+  <data name="BetaWarning" xml:space="preserve">
+    <value>These are beta firmware, use at your own risk!!!</value>
+  </data>
+  <data name="CanNotConnectToComPortAnd" xml:space="preserve">
+    <value>Can not connect to com port and detect board type</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="ErrorUploadingFirmware" xml:space="preserve">
+    <value>Error uploading firmware</value>
+  </data>
+  <data name="QuestionMark" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="Trunk" xml:space="preserve">
+    <value>trunk</value>
+  </data>
+  <data name="TrunkWarning" xml:space="preserve">
+    <value>These are the latest trunk firmware, use at your own risk!!!</value>
+  </data>
+  <data name="BadGPSHealth" xml:space="preserve">
+    <value>Bad GPS Health</value>
+  </data>
+  <data name="BadGyroHealth" xml:space="preserve">
+    <value>Bad Gyro Health</value>
+  </data>
+  <data name="BadAccelHealth" xml:space="preserve">
+    <value>Bad Accel Health</value>
+  </data>
+  <data name="BadCompassHealth" xml:space="preserve">
+    <value>Bad Compass Health</value>
+  </data>
+  <data name="BadBaroHealth" xml:space="preserve">
+    <value>Bad Baro Health</value>
+  </data>
+  <data name="BadLiDARHealth" xml:space="preserve">
+    <value>Bad LiDAR Health</value>
+  </data>
+  <data name="BadOptFlowHealth" xml:space="preserve">
+    <value>Bad OptFlow Health</value>
+  </data>
+  <data name="BadorNoTerrainData" xml:space="preserve">
+    <value>Bad or No Terrain Data</value>
+  </data>
+  <data name="GeofenceBreach" xml:space="preserve">
+    <value>Geofence Breach</value>
+  </data>
+  <data name="BadAHRS" xml:space="preserve">
+    <value>Bad AHRS</value>
+  </data>
+  <data name="NORCReceiver" xml:space="preserve">
+    <value>NO RC Receiver</value>
+  </data>
+  <data name="AutoWP" xml:space="preserve">
+    <value>Auto WP</value>
+  </data>
+  <data name="EnsurePropsNotOn" xml:space="preserve">
+    <value>Ensure your props are not on the Plane/Quad</value>
+  </data>
+  <data name="FailSafe" xml:space="preserve">
+    <value>FailSafe</value>
+  </data>
+  <data name="Error_binding" xml:space="preserve">
+    <value>Error binding</value>
+  </data>
+  <data name="Put_the_transmitter_in_bind_mode__Receiver_is_waiting" xml:space="preserve">
+    <value>Put the transmitter in bind mode. Receiver is waiting.</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="Click_when_Done" xml:space="preserve">
+    <value>Click when Done</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Saving</value>
+  </data>
+  <data name="InvalidCert" xml:space="preserve">
+    <value>Invalid Cert</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="PleaseUnplugTheBoardAnd" xml:space="preserve">
+    <value>Please unplug the board, and then press OK and plug back in.
+Mission Planner will look for 30 seconds to find the board</value>
+  </data>
+  <data name="ThisBoardHasBeenRetired" xml:space="preserve">
+    <value>This board has been retired, Mission Planner this will upload the last available version to your board</value>
+  </data>
+  <data name="YouAreUsingUnsupportedHardware" xml:space="preserve">
+    <value>You are using unsupported hardware.
+This board does not contain a valid certificate of authenticity.
+Please contact your hardware vendor about signing your hardware.</value>
+  </data>
+  <data name="NoNeedToUpload" xml:space="preserve">
+    <value>No need to upload. already on the board</value>
+  </data>
+  <data name="PleaseWaitForTheMusicalTones" xml:space="preserve">
+    <value>Please wait for the musical tones to finish before clicking OK</value>
+  </data>
+  <data name="ObtainFromModule" xml:space="preserve">
+    <value>Obtain From Module</value>
+  </data>
+  <data name="SetHere" xml:space="preserve">
+    <value>Set Here</value>
+  </data>
+  <data name="TrackerHome" xml:space="preserve">
+    <value>Tracker Home</value>
+  </data>
+  <data name="velocity_variance" xml:space="preserve">
+    <value>velocity variance</value>
+  </data>
+  <data name="compass_variance" xml:space="preserve">
+    <value>compass variance</value>
+  </data>
+  <data name="pos_horiz_variance" xml:space="preserve">
+    <value>pos horiz variance</value>
+  </data>
+  <data name="pos_vert_variance" xml:space="preserve">
+    <value>pos vert variance</value>
+  </data>
+  <data name="terrain_alt_variance" xml:space="preserve">
+    <value>terrain alt variance</value>
+  </data>
+  <data name="ChangeThrottle" xml:space="preserve">
+    <value>Change Throttle</value>
+  </data>
+  <data name="Invalid_home_location" xml:space="preserve">
+    <value>Invalid home location</value>
+  </data>
+  <data name="Converting_bin_to_log" xml:space="preserve">
+    <value>Converting bin to log</value>
+  </data>  <data name="UpdateNotFound" xml:space="preserve">
+    <value>No update available.</value>
+  </data>
+  <data name="Failed_to_connect_to_SITL_instance" xml:space="preserve">
+    <value>Failed to connect to SITL instance</value>
+  </data>
+  <data name="Scanning_File" xml:space="preserve">
+    <value>Scanning File</value>
+  </data>
+  <data name="Zoom_to_the_center_or_the_loaded_file" xml:space="preserve">
+    <value>Zoom to the center or the loaded file?</value>
+  </data>
+  <data name="Zoom_To" xml:space="preserve">
+    <value>Zoom To</value>
+  </data>
+  <data name="Do_you_want_to_load_this_into_the_flight_data_screen" xml:space="preserve">
+    <value>Do you want to load this into the flight data screen?</value>
+  </data>
+  <data name="Load_data" xml:space="preserve">
+    <value>Load data</value>
+  </data>
+  <data name="Bad_KML_File" xml:space="preserve">
+    <value>Bad KML File :</value>
+  </data>
+  <data name="No_valid_heartbeats_read_from_port" xml:space="preserve">
+    <value>No valid heartbeats read from port</value>
   </data>
 </root>

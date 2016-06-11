@@ -95,6 +95,8 @@
             this.CHK_showairports = new System.Windows.Forms.CheckBox();
             this.chk_ADSB = new System.Windows.Forms.CheckBox();
             this.chk_tfr = new System.Windows.Forms.CheckBox();
+            this.chk_temp = new System.Windows.Forms.CheckBox();
+            this.chk_norcreceiver = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.NUM_tracklength)).BeginInit();
             this.SuspendLayout();
             // 
@@ -614,10 +616,26 @@
             this.chk_tfr.UseVisualStyleBackColor = true;
             this.chk_tfr.CheckedChanged += new System.EventHandler(this.chk_tfr_CheckedChanged);
             // 
+            // chk_temp
+            // 
+            resources.ApplyResources(this.chk_temp, "chk_temp");
+            this.chk_temp.Name = "chk_temp";
+            this.chk_temp.UseVisualStyleBackColor = true;
+            this.chk_temp.CheckedChanged += new System.EventHandler(this.chk_temp_CheckedChanged);
+            // 
+            // chk_norcreceiver
+            // 
+            resources.ApplyResources(this.chk_norcreceiver, "chk_norcreceiver");
+            this.chk_norcreceiver.Name = "chk_norcreceiver";
+            this.chk_norcreceiver.UseVisualStyleBackColor = true;
+            this.chk_norcreceiver.CheckedChanged += new System.EventHandler(this.chk_norcreceiver_CheckedChanged);
+            // 
             // ConfigPlanner
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chk_norcreceiver);
+            this.Controls.Add(this.chk_temp);
             this.Controls.Add(this.chk_tfr);
             this.Controls.Add(this.chk_ADSB);
             this.Controls.Add(this.CHK_showairports);
@@ -760,5 +778,7 @@
         private System.Windows.Forms.CheckBox CHK_showairports;
         private System.Windows.Forms.CheckBox chk_ADSB;
         private System.Windows.Forms.CheckBox chk_tfr;
+        private System.Windows.Forms.CheckBox chk_temp;
+        private System.Windows.Forms.CheckBox chk_norcreceiver;
     }
 }
