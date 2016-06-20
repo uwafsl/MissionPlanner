@@ -121,4 +121,36 @@
     <senh>4.7058</senh>
     <senw>6.2372</senw>
   </Camera>
+  <Camera>
+    <name>GoPro 3.97mm 12MP</name>
+    <flen>3.97</flen>
+    <imgh>3000</imgh>
+    <imgw>4000</imgw>
+    <senh>4.686</senh>
+    <senw>6.284</senw>
+    </Camera>
+  <Camera>
+    <name>GoPro 4.35mm 12MP</name>
+    <flen>4.35</flen>
+    <imgh>3000</imgh>
+    <imgw>4000</imgw>
+    <senh>4.686</senh>
+    <senw>6.284</senw>
+  </Camera>
+  <Camera>
+    <name>GoPro 5.4mm 12MP</name>
+    <flen>5.4</flen>
+    <imgh>3000</imgh>
+    <imgw>4000</imgw>
+    <senh>4.686</senh>
+    <senw>6.284</senw>
+  </Camera>
+  <Camera>
+    <name>GoPro 7.2mm 12MP</name>
+    <flen>7.2</flen>
+    <imgh>3000</imgh>
+    <imgw>4000</imgw>
+    <senh>4.686</senh>
+   <senw>6.284</senw>
+  </Camera>
 </Cameras>
