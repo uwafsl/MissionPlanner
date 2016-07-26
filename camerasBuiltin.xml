@@ -121,6 +121,7 @@
     <senh>4.7058</senh>
     <senw>6.2372</senw>
   </Camera>
+  <!-- UWAFSL START -->
   <Camera>
     <name>GoPro 3.97mm 12MP</name>
     <flen>3.97</flen>
@@ -153,4 +154,5 @@
     <senh>4.686</senh>
    <senw>6.284</senw>
   </Camera>
+  <!-- UWAFSL END -->
 </Cameras>

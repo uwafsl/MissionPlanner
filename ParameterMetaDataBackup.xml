@@ -8887,38 +8887,50 @@
     </FLTMODE_CH>
     <FLTMODE1>
       <DisplayName>FlightMode1</DisplayName>
+      <!-- UWAFSL START -->
       <Values>0:Manual,1:CIRCLE,2:STABILIZE,3:TRAINING,4:ACRO,5:FBWA,6:FBWB,7:CRUISE,8:AUTOTUNE,10:Auto,11:RTL,12:Loiter,15:Guided,21:UW_MODE_1,22:UW_MODE_2,23:UW_MODE_3</Values>
+      <!-- UWAFSL END -->
       <User>Standard</User>
       <Description>Flight mode for switch position 1 (910 to 1230 and above 2049)</Description>
     </FLTMODE1>
     <FLTMODE2>
       <DisplayName>FlightMode2</DisplayName>
       <Description>Flight mode for switch position 2 (1231 to 1360)</Description>
+      <!-- UWAFSL START -->
       <Values>0:Manual,1:CIRCLE,2:STABILIZE,3:TRAINING,4:ACRO,5:FBWA,6:FBWB,7:CRUISE,8:AUTOTUNE,10:Auto,11:RTL,12:Loiter,15:Guided,17:UW_MODE_1,18:UW_MODE_2,19:UW_MODE_3</Values>
+      <!-- UWAFSL END -->
       <User>Standard</User>
     </FLTMODE2>
     <FLTMODE3>
       <DisplayName>FlightMode3</DisplayName>
       <Description>Flight mode for switch position 3 (1361 to 1490)</Description>
+      <!-- UWAFSL START -->
       <Values>0:Manual,1:CIRCLE,2:STABILIZE,3:TRAINING,4:ACRO,5:FBWA,6:FBWB,7:CRUISE,8:AUTOTUNE,10:Auto,11:RTL,12:Loiter,15:Guided,17:UW_MODE_1,18:UW_MODE_2,19:UW_MODE_3</Values>
+      <!-- UWAFSL END -->
       <User>Standard</User>
     </FLTMODE3>
     <FLTMODE4>
       <DisplayName>FlightMode4</DisplayName>
       <Description>Flight mode for switch position 4 (1491 to 1620)</Description>
+      <!-- UWAFSL START -->
       <Values>0:Manual,1:CIRCLE,2:STABILIZE,3:TRAINING,4:ACRO,5:FBWA,6:FBWB,7:CRUISE,8:AUTOTUNE,10:Auto,11:RTL,12:Loiter,15:Guided,17:UW_MODE_1,18:UW_MODE_2,19:UW_MODE_3</Values>
+      <!-- UWAFSL END -->
       <User>Standard</User>
     </FLTMODE4>
     <FLTMODE5>
       <DisplayName>FlightMode5</DisplayName>
       <Description>Flight mode for switch position 5 (1621 to 1749)</Description>
+      <!-- UWAFSL START -->
       <Values>0:Manual,1:CIRCLE,2:STABILIZE,3:TRAINING,4:ACRO,5:FBWA,6:FBWB,7:CRUISE,8:AUTOTUNE,10:Auto,11:RTL,12:Loiter,15:Guided,17:UW_MODE_1,18:UW_MODE_2,19:UW_MODE_3</Values>
+      <!-- UWAFSL END -->
       <User>Standard</User>
     </FLTMODE5>
     <FLTMODE6>
       <DisplayName>FlightMode6</DisplayName>
       <Description>Flight mode for switch position 6 (1750 to 2049)</Description>
+      <!-- UWAFSL START -->
       <Values>0:Manual,1:CIRCLE,2:STABILIZE,3:TRAINING,4:ACRO,5:FBWA,6:FBWB,7:CRUISE,8:AUTOTUNE,10:Auto,11:RTL,12:Loiter,15:Guided,17:UW_MODE_1,18:UW_MODE_2,19:UW_MODE_3</Values>
+      <!-- UWAFSL END -->
       <User>Standard</User>
     </FLTMODE6>
     <LIM_ROLL_CD>
@@ -8953,6 +8965,7 @@
       <Increment>1</Increment>
       <User>Standard</User>
     </ACRO_ROLL_RATE>
+    <!-- UWAFSL START -->
     <UW_RADIUS>
       <DisplayName>UW Orbit Radius</DisplayName>
       <Description>Radius for UW Orbit Controller</Description>
@@ -8977,6 +8990,7 @@
       <Increment>0.1</Increment>
       <User>Standard</User>
     </UW_OUTER_GAIN>
+    <!-- UWAFSL END -->
     <ACRO_PITCH_RATE>
       <DisplayName>ACRO mode pitch rate</DisplayName>
       <Description>The maximum pitch rate at full stick deflection in ACRO mode</Description>

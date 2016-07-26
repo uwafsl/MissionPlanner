@@ -72,9 +72,13 @@
             // Splash
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            // UWAFSL START
             this.BackgroundImage = global::MissionPlanner.Properties.Resources.UWsplashdark;
+            // UWAFSL END
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            // UWAFSL START
             this.ClientSize = new System.Drawing.Size(584, 336);
+            // UWAFSL END
             this.ControlBox = false;
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.TXT_version);

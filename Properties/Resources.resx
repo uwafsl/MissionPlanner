@@ -1658,9 +1658,11 @@ Control-S - save grid file\par
   <data name="FW icons 2013+logos-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FW icons 2013+logos-16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <!-- UWAFSL START -->
   <data name="UWsplashdark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UW\UWsplashdark.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <!-- UWAFSL END -->
   <data name="Parachute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Parachute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

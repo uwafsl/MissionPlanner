@@ -1584,7 +1584,7 @@ namespace MissionPlanner.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+        // UWAFSL START
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
 
@@ -1595,7 +1595,7 @@ namespace MissionPlanner.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+        // UWAFSL END
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
 
