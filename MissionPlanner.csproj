@@ -7315,6 +7315,9 @@
     <None Include="Resources\pixhawk.jpg" />
     <Content Include="Resources\rover.png" />
     <Content Include="Resources\splash.jpg" />
+	<!-- UWAFSL START -->
+	<Content Include="Resources\UW\UWsplashdark.jpg" />
+	<!-- UWAFSL END -->
     <Content Include="Scripts\datetime.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
